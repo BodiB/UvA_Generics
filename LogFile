@@ -1,8 +1,44 @@
-%TODO - Fill in the Logbook
 25-3 Wednesday - Project choice
-26-3 Thursday - Project assigned
-29-3 Sunday - First outgoing contact via mail
+26-3 Thursday  - Project assigned
+29-3 Sunday    - First outgoing contact via mail
 == Start of project:
-30-3 Monday - 
-31-3 Tuesday -
-1-4 Wednesday -
+30-3 Monday    - Searching and reading relevant literature
+31-3 Tuesday   - Reading relevant literature
+1-4 Wednesday  - Reading relevant literature
+               - Preparing zoom meeting
+               - Zoom meeting at 4pm (ended ca. 4.55pm) 
+                 + Research project on the Semantics of generic statements (Cows produces milk, Dutch people are tall)
+                 + Generic statements can be used to interact with the world, but complicated to understand how people form these statements.
+                 + Difficult to determine (not one correct answer) on when people tend to classify a generic statement as true.
+                 On the Project itself, what is expected:
+                 + Data on how the user interacts with the interface.
+                 + First version will be a 'cards' clicking 'game'. (Frogs example)
+                 + Only people can fill in the research (avoid bots - Captcha?)
+                 + Collect data anonymously - but need data on research group - age, gender,...
+                 + Securely stored?
+                 TO DO LIST:
+                 + Set-Up GitHub Repo, invite PLMir ==DONE==
+                 Agreements:
+                 + Weekly Zoom meeting - Wednesday at 4pm
+                 + Part of the research - *ToDo - implement own project within the overarching research*
+                     **limited size version of the predicted target?
+               - Received mail after meeting:
+                 + Platform used to share experiment: prolific.co
+                 + Python package: PsychoPy (no experience with the package)
+                 + Attached Paper
+                 + Link to preview of experiment used in the paper: https://uvacommscience.eu.qualtrics.com/jfe/preview/SV_cNfZbA2ecK2UX1r?Q_SurveyVersionID=current&Q_CHL=preview
+                 + Request to keep a "log file" within the GitHub repo. ==DONE==
+                   => Was already planning on this, also because this was mentiond during the first 'lecture'. 
+                      The log file could also help to save time if things in a later stadium have to be redone. 
+               - ACHIEVEMENTS TODAY (after Zoom meeting):
+                 + Set-Up GitHub Repo
+                 + Introductory meeting with Patricia - Project Supervisor
+                 + Went through the experiment preview.
+                 + Worked on projectplan. 
+                   > Background and Relevant readings almost finished
+                   > TODO: Research question
+                   > Organisation finished;
+                     # GanttProject on how I expect the first weeks to go
+                     # Deadlines written down, among with 'Personal' deadlines with Project supervisor
+                   > Current version (april 2nd 00:13) is on git "BEP_Projectplan.pdf".
+                     
