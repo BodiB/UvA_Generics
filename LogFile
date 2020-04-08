@@ -59,8 +59,9 @@
                - Need information on what information is needed for the investigation.
 8-4 Wednesday  - Implemented "submitting" of data, packed as a dict. What is needed?
 
-               - Notes for Meeting:
+               - Notes befor Meeting:
                  + Where to host the survey?
+                   -
                  + What data is needed for analysis?
                    > CURRENTLY 'returning': - Clickorder,
                                             - Number of turned tiles
@@ -70,13 +71,19 @@
                                             - Number of tiles with feature (based on the 2 above)
                                             - Rating given by user
                                             - Scale of the survey
-                   >
-                   >
-                   >
-                   >
-                   >
-                   >
-                   >
+                                            ? Timing
+                   > Conditions:
+               - Notes during Meeting:
+                   > Attention check - Wrong question - Error message?
+                   > Check if people did notice certain differences.
+                   > Afterwards
+                    - Clean data excluding people who failed certain critteria.
+                    - Wide format - 1 row per participant
+                    - Long format - 1 row per answer
+                   > Slider only integer values.
+                   > Practice - Page to get familiar with the survey. (2x2 grid?)
+                   > Feedback field.
+                   > Debriefing at the end.
                  +
 
 
