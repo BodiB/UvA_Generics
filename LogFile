@@ -58,3 +58,33 @@
                  + Almost have a working example. Only need to submit data.
                - Need information on what information is needed for the investigation.
 8-4 Wednesday  - Implemented "submitting" of data, packed as a dict. What is needed?
+
+               - Notes for Meeting:
+                 + Where to host the survey?
+                 + What data is needed for analysis?
+                   > CURRENTLY 'returning': - Clickorder,
+                                            - Number of turned tiles
+                                                ? ADD Turn ALL button?
+                                            - Percentage with Feature both sides,
+                                            - Grid Size
+                                            - Number of tiles with feature (based on the 2 above)
+                                            - Rating given by user
+                                            - Scale of the survey
+                   >
+                   >
+                   >
+                   >
+                   >
+                   >
+                   >
+                 +
+
+
+
+NECESSARY FUNCTIONS LIST:
+        DONE   - Flip card system
+               - Host online
+                 + Add data to database
+                 + Security
+                 + Captcha to make bot input harder
+               - Collect prolific data for analysis

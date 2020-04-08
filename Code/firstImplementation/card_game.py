@@ -65,6 +65,13 @@ class Slider():
         self.txt_rect = self.txt_surf.get_rect(
             center=(self.width // 2, self.height // 8))
 
+        # Static graphics - slider background #
+        self.surf.fill((100, 100, 100))
+        pygame.draw.rect(self.surf, GREY, [0, 0, self.width, self.height], 3)
+        pygame.draw.rect(self.surf, ORANGE, [10, 5, self.width - 20, 10], 0)
+        pygame.draw.rect(self.surf, WHITE, [
+            self.spacing_left_side, self.height * 6 // 8, self.slider_width, 5], 0)
+
         # Text to be drawn on the surface for spacing and others.
         self.txt_surf1 = font.render(f"{mini}", 1, GREEN, BLUE)
         self.txt_rect1 = self.txt_surf1.get_rect(
@@ -78,6 +85,9 @@ class Slider():
         self.txt_surf2_1 = font.render(f"Certainly", 1, GREEN, BLUE)
         self.txt_rect2_1 = self.txt_surf2_1.get_rect(
             center=(self.spacing_right_side, self.height * 3 // 8))
+        self.txt_surf3 = font.render(f"Val: {self.val}", 1, GREEN, BLUE)
+        self.txt_rect3 = self.txt_surf3.get_rect(
+            center=(self.spacing_left_side + self.slider_width * 3 / 5, self.height * 3 // 8))
 
         # Draw spacing between mini and maxi
         self.txt_surf_spacing1 = font.render(f"{(maxi-mini)*1//5}", 1, GREEN, BLUE)
@@ -93,19 +103,13 @@ class Slider():
         self.txt_rect_spacing4 = self.txt_surf_spacing4.get_rect(
             center=(self.spacing_left_side + self.slider_width * 4 / 5, self.height * 5 // 8))
 
-        # Static graphics - slider background #
-        self.surf.fill((100, 100, 100))
-        pygame.draw.rect(self.surf, GREY, [0, 0, self.width, self.height], 3)
-        pygame.draw.rect(self.surf, ORANGE, [10, 5, self.width - 20, 10], 0)
-        pygame.draw.rect(self.surf, WHITE, [
-            self.spacing_left_side, self.height * 6 // 8, self.slider_width, 5], 0)
-
         # Text surfaces; Spacing of borders of the range
         self.surf.blit(self.txt_surf, self.txt_rect)
         self.surf.blit(self.txt_surf1, self.txt_rect1)
         self.surf.blit(self.txt_surf1_1, self.txt_rect1_1)
         self.surf.blit(self.txt_surf2, self.txt_rect2)
         self.surf.blit(self.txt_surf2_1, self.txt_rect2_1)
+        self.surf.blit(self.txt_surf3, self.txt_rect3)
 
         # Text surfaces; Draw spacing between range
         self.surf.blit(self.txt_surf_spacing1, self.txt_rect_spacing1)
@@ -139,6 +143,11 @@ class Slider():
         # move of button box to correct screen position
         self.button_rect.move_ip(self.xpos, self.ypos)
 
+        font = pygame.font.SysFont("Verdana", 12)
+        self.txt_surf3 = font.render(f"Val: {self.val}", 1, GREEN, BLUE)
+        self.txt_rect3 = self.txt_surf3.get_rect(
+            center=(self.spacing_left_side + self.slider_width * 3 / 5, self.height * 3 // 8))
+        surf.blit(self.txt_surf3, self.txt_rect3)
         # screen
         screen.blit(surf, (self.xpos, self.ypos))
 
@@ -148,6 +157,7 @@ class Slider():
     """
         self.val = (pygame.mouse.get_pos()[
                     0] - self.xpos - 30) / (self.width - 30) * (self.maxi - self.mini) + self.mini
+        self.val = round(self.val, 2)
         if self.val < self.mini:
             self.val = self.mini
         if self.val > self.maxi:
@@ -170,8 +180,7 @@ def main():
     pygame.init()
     FPSCLOCK = pygame.time.Clock()
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
-    clicked_order_l = []
-    clicked_order_r = []
+    clicked_order = []
 
     mousex = 0  # used to store x coordinate of mouse event
     mousey = 0  # used to store y coordinate of mouse event
@@ -199,20 +208,13 @@ def main():
 
     while True:  # main game loop
         mouseClicked = False
-        stringl = f"{len(clicked_order_l)}"
-        stringr = f"{len(clicked_order_r)}"
-        textl = font.render(stringl, True, GREEN, BLUE)
-        textr = font.render(stringr, True, GREEN, BLUE)
         DISPLAYSURF.fill(BGCOLOR)  # drawing the window
-        DISPLAYSURF.blit(textl, textRectl)
-        DISPLAYSURF.blit(textr, textRectr)
         drawBoard(mainBoard, revealedBoxes)
 
-        #
+        # Submit 'button'
         button_surface = font.render(">>", 3, RED)
         button_text = button_surface.get_rect(
             center=(WINDOWWIDTH - 60, WINDOWHEIGHT - 35))
-        #
         button = pygame.draw.rect(
             DISPLAYSURF, WHITE, (WINDOWWIDTH - 110, WINDOWHEIGHT - 60, 100, 50))
         DISPLAYSURF.blit(button_surface, button_text)
@@ -227,7 +229,7 @@ def main():
                     # `event.pos` is the mouse position.
                     if button.collidepoint(event.pos):
                         # Submit and reset for new view
-                        packData(clicked_order_l, clicked_order_r, FEATURE_LEFT, FEATURE_RIGHT,
+                        packData(clicked_order, FEATURE_LEFT, FEATURE_RIGHT,
                                  HORIZONTALTILES, VERTICALTILES, rate.val, SCALEMAX, SCALEMIN)
                         # SET NEXT SCREEN BASED ON PREVIOUS ANSWER?
                     if rate.button_rect.collidepoint(pos):
@@ -252,11 +254,11 @@ def main():
                 drawHighlightBox(boxx, boxy)
             if not revealedBoxes[boxx][boxy] and mouseClicked:
                 if boxx >= HORIZONTALTILES:
-                    clicked_order_r.append(
-                        [boxx - HORIZONTALTILES, boxy, getShape(mainBoard, boxx, boxy)])
+                    clicked_order.append(
+                        ['R', boxx - HORIZONTALTILES, boxy, getShape(mainBoard, boxx, boxy)])
                 else:
-                    clicked_order_l.append(
-                        [boxx, boxy, getShape(mainBoard, boxx, boxy)])
+                    clicked_order.append(
+                        ['L', boxx, boxy, getShape(mainBoard, boxx, boxy)])
                 revealBoxesAnimation(mainBoard, [(boxx, boxy)])
                 revealedBoxes[boxx][boxy] = True  # set the box as "revealed"
         # Redraw the screen and wait a clock tick.
@@ -394,6 +396,17 @@ def coverBoxesAnimation(board, boxesToCover):
 
 def drawBoard(board, revealed):
     # Draws all of the boxes in their covered or revealed state.
+    font = pygame.font.Font('freesansbold.ttf', 16)
+    left_surface = font.render("Marchena Hide Beetles", 3, GREEN)
+    left_text = left_surface.get_rect(
+        center=(WINDOWWIDTH//4, 20))
+    right_surface = font.render("Genovesa Hide Beetles", 3, GREEN)
+    right_text = right_surface.get_rect(
+        center=(WINDOWWIDTH*3//4, 20))
+    # Draw the titles
+    DISPLAYSURF.blit(left_surface, left_text)
+    DISPLAYSURF.blit(right_surface, right_text)
+    # Draw Centerline
     pygame.draw.line(DISPLAYSURF, BOXCOLOR, (WINDOWWIDTH //
                                              2, YMARGIN - GAPSIZE), (WINDOWWIDTH // 2, WINDOWHEIGHT - YMARGIN))
     for boxx in range(BOARDWIDTH):
@@ -431,14 +444,13 @@ def startGameAnimation(board):
     #     coverBoxesAnimation(board, boxGroup)
 
 
-def packData(orderL, orderR, FLeft, FRight, HTile, VTile, rating, SMax, SMin):
+def packData(order, FLeft, FRight, HTile, VTile, rating, SMax, SMin):
     # Collect the gathered data and pack it in a dict. (SHOULD BECOME DATABASE.)
     size = (HTile * VTile)
     submit = {
-        "LeftOrder": orderL,
-        "RightOrder": orderR,
-        "ClickedLeft": len(orderL),
-        "ClickedRight": len(orderR),
+        "ClickOrder": order,
+        "ClickedLeft": sum(x.count('L') for x in order),
+        "ClickedRight": sum(x.count('R') for x in order),
         "DifferentLeft%": FLeft,
         "DifferentRight%": FRight,
         "NumTilesPerSide": size,
