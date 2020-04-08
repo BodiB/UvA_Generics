@@ -21,7 +21,7 @@
                  Agreements:
                  + Weekly Zoom meeting - Wednesday at 4pm
                  + Part of the research - *ToDo - implement own project within the overarching research*
-                     **limited size version of the predicted target?
+                     **limited size version of the predicted target - 'pilot' experiment
                - Received mail after meeting:
                  + Platform used to share experiment: prolific.co
                  + Python package: PsychoPy (no experience with the package)
@@ -57,3 +57,4 @@
                - Refactored code to be usefull for our purpose.
                  + Almost have a working example. Only need to submit data.
                - Need information on what information is needed for the investigation.
+8-4 Wednesday  - Implemented "submitting" of data, packed as a dict. What is needed?
