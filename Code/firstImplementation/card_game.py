@@ -45,7 +45,7 @@ SCALEMIN = 0
 
 class Slider():
     def __init__(self, name, val, maxi, mini, xpos, ypos):
-        self.val = val  # start value
+        self.val = int(val)  # start value
         self.maxi = maxi  # maximum at slider position right
         self.mini = mini  # minimum at slider position left
         self.width = 300
@@ -157,7 +157,7 @@ class Slider():
     """
         self.val = (pygame.mouse.get_pos()[
                     0] - self.xpos - 30) / (self.width - 30) * (self.maxi - self.mini) + self.mini
-        self.val = round(self.val, 2)
+        self.val = int(round(self.val, 0))
         if self.val < self.mini:
             self.val = self.mini
         if self.val > self.maxi:
@@ -175,7 +175,7 @@ BEETLE2 = 'beetle2'
 ALLSHAPES = (BEETLE1, BEETLE2)
 
 
-def main():
+def main(question):
     global FPSCLOCK, DISPLAYSURF
     pygame.init()
     FPSCLOCK = pygame.time.Clock()
@@ -198,7 +198,7 @@ def main():
     textRectr.center = (WINDOWWIDTH * 3 // 4 - XMARGIN // 2, YMARGIN // 2)
 
     rate_loc = (WINDOWWIDTH - XMARGIN)
-    rate = Slider("Hide Beetles from Genovesa have green wings.", 2.5, SCALEMAX, SCALEMIN, WINDOWWIDTH //
+    rate = Slider(question, 2.5, SCALEMAX, SCALEMIN, WINDOWWIDTH //
                   2, WINDOWHEIGHT - YMARGIN)
 
     DISPLAYSURF.fill(BGCOLOR)
@@ -464,4 +464,4 @@ def packData(order, FLeft, FRight, HTile, VTile, rating, SMax, SMin):
 
 
 if __name__ == '__main__':
-    main()
+    main("Hide Beetles from Genovesa have green wings.")
