@@ -159,7 +159,7 @@ class Card_Game(object):
         self.YMARGIN = int(
             (self.WINDOWHEIGHT - (self.BOARDHEIGHT * (self.BOXSIZE + self.GAPSIZE))) / 2)
 
-        #        R    G    B
+        #  colors in  R    G    B
         self.GRAY = (100, 100, 100)
         self.NAVYBLUE = (60,  60, 100)
         self.WHITE = (255, 255, 255)
@@ -181,10 +181,10 @@ class Card_Game(object):
         self.BOXCOLOR = self.WHITE
         self.HIGHLIGHTCOLOR = self.BLUE
 
-        self.BEETLE1 = 'beetle1'
-        self.BEETLE2 = 'beetle2'
+        self.IMAGE1 = 'beetle1'
+        self.IMAGE2 = 'beetle2'
 
-        self.ALLSHAPES = (self.BEETLE1, self.BEETLE2)
+        self.ALLSHAPES = (self.IMAGE1, self.IMAGE2)
 
     def main(self, question):
         global FPSCLOCK, DISPLAYSURF
@@ -355,14 +355,14 @@ class Card_Game(object):
         # get pixel coords from board coords
         left, top = Card_Game.leftTopCoordsOfBox(self, boxx, boxy)
         # Draw the shapes
-        if shape == self.BEETLE1:
+        if shape == self.IMAGE1:
             beetle1 = pygame.image.load("beetle1.png")
             beetle1 = pygame.transform.scale(
                 beetle1, (self.BOXSIZE, self.BOXSIZE))
             beetle1rect = beetle1.get_rect()
             beetle1rect.center = (left + half, top + half)
             DISPLAYSURF.blit(beetle1, beetle1rect)
-        elif shape == self.BEETLE2:
+        elif shape == self.IMAGE2:
             beetle2 = pygame.image.load("beetle2.png")
             beetle2 = pygame.transform.scale(
                 beetle2, (self.BOXSIZE, self.BOXSIZE))
@@ -405,10 +405,10 @@ class Card_Game(object):
         font = pygame.font.Font('freesansbold.ttf', 16)
         left_surface = font.render("Marchena Hide Beetles", 3, self.GREEN)
         left_text = left_surface.get_rect(
-            center=(self.WINDOWWIDTH//4, 20))
+            center=(self.WINDOWWIDTH // 4, 20))
         right_surface = font.render("Genovesa Hide Beetles", 3, self.GREEN)
         right_text = right_surface.get_rect(
-            center=(self.WINDOWWIDTH*3//4, 20))
+            center=(self.WINDOWWIDTH * 3 // 4, 20))
         # Draw the titles
         DISPLAYSURF.blit(left_surface, left_text)
         DISPLAYSURF.blit(right_surface, right_text)
