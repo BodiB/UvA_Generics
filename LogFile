@@ -91,10 +91,41 @@
                                  + Security
                                  + Captcha to make bot input harder
                                - Collect prolific data for analysis
-9-4 Thursday   - Getting to know PsychoPy, but also busy renovating our new appartment
-10-4 Friday    - Renovating our new appartment
-11-4 Saturday  - Renovating our new appartment
-12-4 Sunday    - Renovating our new appartment
-13-4 Monday    - Renovating our new appartment
-14-4 Tuesday   - Getting to know PsychoPy, but also busy renovating our new appartment... 
-15-4 Wednesday -
+9-4 Thursday   - Getting to know PsychoPy and how to use it.
+14-4 Tuesday   - Getting to know PsychoPy, what can it do.
+
+
+
+
+15-4 Wednesday - MUST: Hosting, IMPORTANT!!
+               - Meeting Prep:
+                 > Knowns:
+                   + Online hosted survey/questionnaire
+                   + Attention check
+                   + Rate how much people agree with the statement
+                   + Control questions if people did see differences
+                   + Debriefing
+                   + Feedback/comment field
+        --------------- SO far all features Qualtrics has. ---------------
+                   + Show randomized figures to be rated.
+                     % Not (directly) a feature of Qualtrics,
+                       but just found out Qualtrics has some kind of JavaScript
+                       support which might be usefull and would make the app redundant.
+                       * Apparently can not be found in the free version.
+                   !! Able to analyse the data.
+                     + Should be 'easy' after data is stored correctly in the database
+                     ? What data do you need to be able to do the analysis?
+                     ?
+                   !!
+               - Meeting at 4pm
+                 > Possible to have acces to Qualtrics? (Free account has very limited options)
+                    + Saw the option of javascript and graphics, so maybe that might work
+                      instead of creating a new program
+                 > Priorities for coming week:
+                   - Check what can be done with qualtrics.
+                   - Check if the current code can be ran online, apparently
+                     some servers have issues. Hope to be sure by Friday.
+                     + What if nothing works?
+                       - Start building a website specifically for the survey.
+                         - Using existing CMS and from there build it.
+                         - Planning will be altered accoringly 
