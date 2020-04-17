@@ -128,4 +128,19 @@
                      + What if nothing works?
                        - Start building a website specifically for the survey.
                          - Using existing CMS and from there build it.
-                         - Planning will be altered accoringly 
+                         - Planning will be altered accordingly
+16-4 Thursday  - Figured out some things in Qualtrics, not possible to do what I wanted.
+17-4 Friday    - Started rebuilding the questionnaire with HTML, CSS and JavaScript.
+                 :( Not possible to run the earlier code client side...
+                 :( Work can be refactored to be used in the JavaScript.
+               - https://github.com/sandraisrael/Memory-Game-fend
+               - php -S localhost:8000
+               - Online testing at free webhost: https://mycologic-cement.000webhostapp.com/index.php
+               - Short link own: https://www.000webhost.com/members/website/mycologic-cement/files
+# TODO (Convert to english)
+Wagner algorithm
+Om en om openen, user vs computer.
+Learning rate is afhankelijk van welke tegel je openklikt.
+Onderbreken van de flow zodat ze op blijven letten.
+Niet 5*5 want dan te bewust, voorkomen.
+Groter grid -> zodat mensen er niet bewust van zijn hoe groot de grid is.

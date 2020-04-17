@@ -144,8 +144,8 @@ class Card_Game(object):
         self.REVEALSPEED = 8  # speed boxes' sliding reveals and covers
         self.BOXSIZE = 40  # size of box height & width in pixels
         self.GAPSIZE = 10  # size of gap between boxes in pixels
-        self.HORIZONTALTILES = 5
-        self.VERTICALTILES = 5
+        self.HORIZONTALTILES = 6
+        self.VERTICALTILES = 6
         self.BOARDWIDTH = self.HORIZONTALTILES * 2  # number of columns of icons
         self.BOARDHEIGHT = self.VERTICALTILES  # number of rows of icons
 
