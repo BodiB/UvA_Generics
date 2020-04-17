@@ -48,10 +48,36 @@ Array.prototype.memory_tile_shuffle = function(){
     }
 }
 
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+
 function newBoard(board, list, v_t, h_t, p_A, p_B, flip){
     var h_size = (document.getElementById("memory_board_right").clientWidth-18)/h_t;
     h_size = h_size-4
     var size = v_t*h_t;
+    setCookie("turned_tiles", 0, 1);
+    setCookie("size", size, 1);
     var t_A = Math.floor(size*p_A/100);
     var t_B = Math.floor(size*p_B/100);
     var array = [];
@@ -99,13 +125,21 @@ function getRandomNode(){
 }
 
 function memoryFlipTile(tile,val){
+    var turned_tiles = getCookie("turned_tiles");
+    var size = getCookie("size");
     if(tile.innerHTML == ""){
+        turned_tiles++;
+        setCookie("turned_tiles", turned_tiles, 1);
         tile.style.background = '#FFF';
         tile.innerHTML = '<img src="'+ val +'" width="' + tile.offsetWidth + 'height=' + tile.offsetWidth + '"/>';
         var myNode = getRandomNode();
         var myVal = myNode.getAttribute("data-value");
         myNode.style.background = '#FFF';
         myNode.innerHTML = '<img src="'+ myVal +'" width="' + tile.offsetWidth + 'height=' + tile.offsetWidth + '"/>';
+    }
+    if(turned_tiles == size){
+        alert("TURNED ALL");
+        // ONLY NOW ALLOW TO GO TO NEXT
     }
 }
 
@@ -116,7 +150,7 @@ function createBoard(){
     var p_B = 30; // Percentage of occurence of B (floored)
     var list = [["Beetle Question?", "https://mycologic-cement.000webhostapp.com/img/bettle_A.PNG", "https://mycologic-cement.000webhostapp.com/img/bettle_C.PNG"]]
     newBoard('memory_board_left', list[0], v_t, h_t, p_A, p_B, true);
-    newBoard('memory_board_right',  list[0], v_t, h_t, p_A, p_B, false);
+    newBoard('memory_board_right', list[0], v_t, h_t, p_A, p_B, false);
 }
 </script>
 </head>
@@ -127,6 +161,7 @@ function createBoard(){
     <div id="memory_board_right">
     </div>
 </div>
+<p id="TEXT"></p>
 <!-- <div class="tile" style="display:none"> </div> -->
 <script>createBoard()</script>
 </body>
