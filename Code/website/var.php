@@ -1,5 +1,4 @@
 <?php
-    session_start();
     $q1 = "Hide Beetles from Genovesa have red wings.";
     $q2 = "Hide Beetles from Genovesa have black wings.";
     // $q3 = "Jumping Spiders from Genovesa have green backs."

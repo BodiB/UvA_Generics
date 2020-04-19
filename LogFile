@@ -136,9 +136,9 @@
                - https://github.com/sandraisrael/Memory-Game-fend
                - php -S localhost:8000
                - Online testing at free webhost: https://mycologic-cement.000webhostapp.com/index.php
-               - "GAME" at: https://mycologic-cement.000webhostapp.com/mem.php
-               - Short link own: https://www.000webhost.com/members/website/mycologic-cement/files
-19-4 Sunday    - Almost finished the questionnaire.
+               - Short link online file manager: https://www.000webhost.com/members/website/mycologic-cement/files
+19-4 Sunday    - Almost finished the questionnaire. (Has no end yet and no random questions/data.)
+               + TODO: Add database for data storage etc.
 # TODO (Convert to english)
 Wagner algorithm
 Om en om openen, user vs computer.
