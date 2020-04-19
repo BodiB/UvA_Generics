@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $_SESSION['ID']= $_GET['PROLIFIC_PID'];
+    $_SESSION['ID']= $_GET['PROLIFIC_PID'];    
     session_destroy();
 ?>
 <!DOCTYPE html>

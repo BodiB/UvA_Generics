@@ -164,10 +164,11 @@ input[type='range']:focus {
   padding: 40px;
   word-spacing: 20px;
   left: 0px;
-  top: -50px;
+  top: -55px;
   z-index: -1;
 }
 .slider_container {
+  color: #777;
   padding: 0px;
   position: relative;
 }
@@ -183,4 +184,38 @@ output:before{
 }
 body {
   font-family: Calibri, Arial;
+}
+
+div#memory_board{
+    width:800px;
+    height:540px;
+    padding:24px;
+    margin:0px auto;
+}
+div#memory_board_left{
+    background:#CCC;
+    float: left;
+    border:#999 1px solid;
+    width:380px;
+    height:540px;
+    padding:9px;
+    margin:0px auto;
+}
+div#memory_board_right{
+    background:#CCC;
+    border:#999 1px solid;
+    float: right;
+    width:380px;
+    height:540px;
+    padding:9px;
+    margin:0px auto;
+}
+div.tile{
+    background-color: white;
+    border:#000 1px solid;
+    float:left;
+    font-size:64px;
+    cursor:pointer;
+    text-align:center;
+    margin: 1px;
 }

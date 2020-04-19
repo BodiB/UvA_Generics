@@ -106,12 +106,8 @@
                 document.getElementById("previous").innerHTML = "I do not consent to participate in this study."
             }
             else{
-			sliderChoice.style.display = 'none';
 			document.getElementById("next").innerHTML = ">>";
             }
-		} else {
-			sliderChoice.style.display = 'block';
-			document.getElementById("next").innerHTML = "Next Question";
 		}
 	}
 
@@ -156,7 +152,6 @@
 	// Pagination
 	const previousButton = document.getElementById("previous");
 	const nextButton = document.getElementById("next");
-	const sliderChoice = document.getElementById("slider");
 	const slides = document.querySelectorAll(".slide");
 	let currentSlide = 0;
 
