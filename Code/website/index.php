@@ -8,8 +8,8 @@
 <!DOCTYPE html>
 
 <head>
-	<link rel='stylesheet' href='css.css'>
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <link rel='stylesheet' href='css.css'>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
     <script src="https://www.google.com/recaptcha/api.js?render=6LcpSOsUAAAAAKk5EE2MoABHbM75mpNUHz_dlQ3r"></script>
     <script src="captcha.js"></script>
 </head>
@@ -19,42 +19,42 @@
     <?php if(isset($_SESSION['ID']) || isset($_COOKIE['ID'])){
         if(!isset($_SESSION['ID'])){$_SESSION['ID'] = $_COOKIE['ID'];}
         ?>
-	<h1>Questionnaire Prolific ID: <?php echo $_SESSION['ID']; ?></h1>
-	<div class="quiz-container">
-		<div id="quiz">
-		</div>
-	</div>
-	<button id="previous">Previous Question</button>
-	<button id="next">Next Question</button>
+    <h1>Questionnaire Prolific ID: <?php echo $_SESSION['ID']; ?></h1>
+    <div class="quiz-container">
+        <div id="quiz">
+        </div>
+    </div>
+    <button id="previous">Previous Question</button>
+    <button id="next">Next Question</button>
     <form method="POST">
-    	<button id="submit" formaction="/submit.php">Start Questionnaire </button>
+        <button id="submit" formaction="/submit.php">Start Questionnaire </button>
         <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
     </form>
-	<div id="results"></div>
-	<script src="js.js"></script>
-	<!-- <script>
-		$('input').on('change', function() {
-			alert($(this).val());
-		})
+    <div id="results"></div>
+    <script src="js.js"></script>
+    <!-- <script>
+        $('input').on('change', function() {
+            alert($(this).val());
+        })
 
-	</script> -->
-	<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
-	<script>
-		window.cookieconsent.initialise({
-			"palette": {
-				"popup": {
-					"background": "#000"
-				},
-				"button": {
-					"background": "#f1d600"
-				}
-			},
-			"position": "bottom-right",
-			"content": {
-				"message": "We store cookies to ensure you get paid after completing this questionnaire."
-			}
-		});
-	</script>
+    </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+    <script>
+        window.cookieconsent.initialise({
+            "palette": {
+                "popup": {
+                    "background": "#000"
+                },
+                "button": {
+                    "background": "#f1d600"
+                }
+            },
+            "position": "bottom-right",
+            "content": {
+                "message": "We store cookies to ensure you get paid after completing this questionnaire."
+            }
+        });
+    </script>
 <?php } else { ?>
     <h1>We dit not receive your Prolific ID</h1>
     <!-- TODO REMOVE AFTER TESTING. -->

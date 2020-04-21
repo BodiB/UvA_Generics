@@ -139,6 +139,10 @@
                - Short link online file manager: https://www.000webhost.com/members/website/mycologic-cement/files
 19-4 Sunday    - Almost finished the questionnaire. (Has no end yet and no random questions/data.)
                + TODO: Add database for data storage etc.
+20-4 Monday    - Finished user interaction.
+                 + Only need to add the instruction page (as database item.)
+21-4 Tuesday   - Working on backend - database, admin interaction etc.
+
 # TODO (Convert to english)
 Wagner algorithm
 Om en om openen, user vs computer.

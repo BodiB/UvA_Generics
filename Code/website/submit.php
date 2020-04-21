@@ -1,4 +1,4 @@
-<?php // Check if form was submitted:
+<?php // Check if not a robot and if agreed:
     session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])) {
 
