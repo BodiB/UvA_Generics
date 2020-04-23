@@ -33,14 +33,12 @@ function getCookie(cname) {
 }
 
 
-function newBoard(board, list, v_t, h_t, p_A, p_B, flip) {
+function newBoard(board, list, v_t, h_t, t_A, t_B, flip) {
     var h_size = (document.getElementById("memory_board_right").clientWidth - 18) / h_t;
     h_size = h_size - 4
     var size = v_t * h_t;
     setCookie("turned_tiles", 0, 1);
     setCookie("size", size, 1);
-    var t_A = Math.floor(size * p_A / 100);
-    var t_B = Math.floor(size * p_B / 100);
     var array = [];
     var i = 0;
     while (i < t_A) {
@@ -109,34 +107,24 @@ function memoryFlipTile(tile, val) {
     }
 }
 
-function createBoard(list, v_t, h_t, p_A_l, p_B_l, p_A_r, p_B_r) {
-    newBoard('memory_board_left', list, v_t, h_t, p_A_l, p_B_l, true);
-    newBoard('memory_board_right', list, v_t, h_t, p_A_r, p_B_r, false);
+function createBoard(list, v_t, h_t, t_A_l, t_B_l, t_A_r, t_B_r) {
+    newBoard('memory_board_left', list, v_t, h_t, t_A_l, t_B_l, true);
+    newBoard('memory_board_right', list, v_t, h_t, t_A_r, t_B_r, false);
 }
 
 
 function checkValue(val) {
-    // TODO REMOVE AND USE NORMAL VALUES.
-    var list = ["Hide Beetles from Genovesa have black wings.", "Marchena Hide Beetles", "Genovesa Hide Beetles", "https://mycologic-cement.000webhostapp.com/img/bettle_A.PNG", "https://mycologic-cement.000webhostapp.com/img/bettle_C.PNG"];
-    var v_t = 5; // Vertical number of tiles
-    var h_t = 6; // Horizontal number of tiles
-    var p_A_l = 40; // Percentage of occurence of A left (floored)
-    var p_B_l = 30; // Percentage of occurence of B left (floored)
-    var p_A_r = 50; // Percentage of occurence of A right (floored)
-    var p_B_r = 50; // Percentage of occurence of B right (floored)
     if (val == 3) {
         var r = confirm("Are you sure you rated the statement?");
     }
+	if (r == false) {
+        return false;
+    } 
     else{
-        // SUBMIT
-        createBoard(list, v_t, h_t, p_A_l, p_B_l, p_A_r, p_B_r);
-        submitButton.style.display = 'none';
+		return true;
     }
-    if (r == true) {
-        // SUBMIT
-        createBoard(list, v_t, h_t, p_A_l, p_B_l, p_A_r, p_B_r);
-        submitButton.style.display = 'none';
-    } else {
-        return
-    }
+}
+
+function changeFunction(val){
+	document.getElementById("rating").value = val;
 }

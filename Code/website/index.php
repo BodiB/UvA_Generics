@@ -27,7 +27,7 @@
     <button id="previous">Previous Question</button>
     <button id="next">Next Question</button>
     <form method="POST">
-        <button id="submit" formaction="/submit.php">Start Questionnaire </button>
+        <button id="submit" formaction="submit.php">Start Questionnaire </button>
         <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
     </form>
     <div id="results"></div>
@@ -58,7 +58,7 @@
 <?php } else { ?>
     <h1>We dit not receive your Prolific ID</h1>
     <!-- TODO REMOVE AFTER TESTING. -->
-    <form action="/prolific.php" method="get">
+    <form action="prolific.php" method="get">
         <label for="PROLIFIC_PID">Fill in your PROLIFIC_PID:</label>
         <input type="text" id="PROLIFIC_PID" name="PROLIFIC_PID"><br><br>
         <input type="submit" value="Submit">
