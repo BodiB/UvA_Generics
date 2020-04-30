@@ -1,6 +1,26 @@
 <?php
     session_start();
-    $_SESSION["question_count"] = 0;
+	include('db.php');
+	$_SESSION['admin'] = 0;
+	if(isset($_SESSION['ID'])){
+	$selectStatement = "Select count(*)
+                       FROM results
+                       WHERE prolific_id = :id";
+	$link = new PDO($dsn, $user, $passwd);
+	$stm = $link->prepare($selectStatement);
+    $stm->execute(['id' => $_SESSION['ID']]);
+	$num_rows = $stm->fetchColumn();
+	
+	$selectAdmins = "Select admin
+                       FROM user
+                       WHERE prolific_id = :id";
+	$link = new PDO($dsn, $user, $passwd);
+	$stmAdmin = $link->prepare($selectAdmins);
+    $stmAdmin->execute(['id' => $_SESSION['ID']]);
+	$row = $stmAdmin->fetch(PDO::FETCH_ASSOC);
+	$_SESSION['admin'] = $row['admin'];
+	
+    $_SESSION["question_count"] = $num_rows;
     $_SESSION['start'] = date("M,d,Y H:i:s");
     setcookie('question_count', $_SESSION['question_count'], time() + (86400 * 30), "/"); // 86400 = 1 day
     setcookie('start', $_SESSION['start'], time() + (86400 * 30), "/"); // 86400 = 1 day
@@ -16,10 +36,16 @@
 <html>
 
 <body>
-    <?php if(isset($_SESSION['ID']) || isset($_COOKIE['ID'])){
-        if(!isset($_SESSION['ID'])){$_SESSION['ID'] = $_COOKIE['ID'];}
-        ?>
-    <h1>Questionnaire Prolific ID: <?php echo $_SESSION['ID']; ?></h1>
+    <h1>Questionnaire Prolific ID: <?php echo $_SESSION['ID']; ?></h1> 
+	<div class="TEXT">
+	<?php
+		if($_SESSION['admin'] == 1){
+	?>
+		<button onclick="window.location.href = 'admin.php';">Admin menu</button>	
+	<?php
+		}
+	?>
+	</div>
     <div class="quiz-container">
         <div id="quiz">
         </div>
@@ -32,12 +58,12 @@
     </form>
     <div id="results"></div>
     <script src="js.js"></script>
-    <!-- <script>
+    <script>
         $('input').on('change', function() {
             alert($(this).val());
         })
 
-    </script> -->
+    </script> 
     <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
     <script>
         window.cookieconsent.initialise({
@@ -55,16 +81,6 @@
             }
         });
     </script>
-<?php } else { ?>
-    <h1>We dit not receive your Prolific ID</h1>
-    <!-- TODO REMOVE AFTER TESTING. -->
-    <form action="prolific.php" method="get">
-        <label for="PROLIFIC_PID">Fill in your PROLIFIC_PID:</label>
-        <input type="text" id="PROLIFIC_PID" name="PROLIFIC_PID"><br><br>
-        <input type="submit" value="Submit">
-    </form>
-
-
     <?php } ?>
 </body>
 

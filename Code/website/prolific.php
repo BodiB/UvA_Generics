@@ -28,12 +28,11 @@
 <?php
 	}
     else{
-    $statement = $link->prepare('INSERT INTO user (prolific_id, questions_answered, starting_time, rewarded)
-								 VALUES (:id, :questions_answered, NOW(), False)');
+    $statement = $link->prepare('INSERT INTO user (prolific_id, starting_time, rewarded)
+								 VALUES (:id, NOW(), False)');
     
     $statement->execute([
        'id' => $_SESSION['ID'],
-       'questions_answered' => 0,
     ]);
 ?>
 <!DOCTYPE html>

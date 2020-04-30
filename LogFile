@@ -127,7 +127,7 @@
                      some servers have issues. Hope to be sure by Friday.
                      + What if nothing works?
                        - Start building a website specifically for the survey.
-                         - Using existing CMS and from there build it.
+                         ? Using existing CMS and from there build it.
                          - Planning will be altered accordingly
 16-4 Thursday  - Figured out some things in Qualtrics, not possible to do what I wanted.
 17-4 Friday    - Started rebuilding the questionnaire with HTML, CSS and JavaScript.
@@ -142,21 +142,64 @@
 20-4 Monday    - Finished user interaction.
                  + Only need to add the instruction page (as database item.)
 21-4 Tuesday   - Working on backend - database, admin interaction etc.
-22-4 Wednesday - TODO before next weeks meeting:
-				 + Back-end finished except for csv export.
-			   - TODO before monday:
-			     + Write draft of thesis...!
+22-4 Wednesday - # TODO (Convert to english)
+                 + Wagner algorithm
+                 + Om en om openen, user vs computer.
+                 + Learning rate is afhankelijk van welke tegel je openklikt.
+                 + Onderbreken van de flow zodat ze op blijven letten.
+                 + Niet 5*5 want dan te bewust, voorkomen.
+                 + Groter grid -> zodat mensen er niet bewust van zijn hoe groot de grid is.
+               - TODO before next weeks meeting:
+                 + Back-end finished except for csv export.
+               - TODO before monday:
+                 + Write draft of thesis...!
 23-4 Thursday  - Gathering literature
                - Working on 'Schoolorganisatie'
 24-4 Friday    - Writhing thesis
 25-4 Saturday  - Writing thesis
 27-4 Monday    - Finishing first part of thesis, to send it to Patricia.
+28-4 Tuesday   - Backend coding
+29-4 Wednesday - Introduction more superficial
+               - Overgeneralization effect and Impact to Theory
+               - Contradiction to help introduce the topic.
 
+               - 2 different ways to approach the generics
+                 + Formal approach - Formal rules, when a statement should be accepted as true.
+                 + Emperical approach - Looking for preferences (leslie for example).
+                 + Norms against describing behaviour, finding patterns.
+                 + Ideal case: match between formal and empircal way.
 
-# TODO (Convert to english)
-Wagner algorithm
-Om en om openen, user vs computer.
-Learning rate is afhankelijk van welke tegel je openklikt.
-Onderbreken van de flow zodat ze op blijven letten.
-Niet 5*5 want dan te bewust, voorkomen.
-Groter grid -> zodat mensen er niet bewust van zijn hoe groot de grid is.
+               - Formal theory that will make the same predictions.
+                 + Describe when you expect a statement to be true (counting?)
+
+               - Criticised the idear that any formal rule should be based on probablistic considerations.
+               - Probability in the world on what we decide that it is true.
+               - Mismatch between thought of people and the probability given.
+
+               - Rooij and Schulz suggest:
+                 + Reason people were not finding acceptance because they were
+                   only looking at majority rules.
+
+               - Intro: 1.1 Keep it but more detail
+               - 1.2 General structure of the debate just discussed.
+
+               - Ethical aspect:
+                 + Preregistration: document with setup, research group,
+                 + description of statistical tests, published on OSF
+                 + Different aspects
+                 + Requirement1:
+                 + To improve research being done, research that is open,
+                 transparent and reproducable.
+
+               - TOOL:
+                 + More centered
+                 + White background
+
+                 + Comments:
+                   - Rate statement before last one showed up.
+                   - Delay between turning tiles.
+                   - Replace uva logo with gray background.
+                   - Before showing next button: "PLEASE FINISH THE GRID BEFORE CONTINUEing"
+                   - Add setting for size of scale.
+30-4 Thursday  - Rewriting first draft to have a second review by Patricia.
+1-5 Friday     - (Expected) Finishing first draft and turning it in. *Deadline

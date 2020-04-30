@@ -2,7 +2,8 @@
     session_start();
     include("var.php");
 	$_SESSION['data'] = $data;
-    if ($_SESSION["recaptcha"] == 1) {
+	setcookie('question_count', $_SESSION['question_count'], time() + (86400 * 30), "/"); // 86400 = 1 day
+    if ($_SESSION["recaptcha"] == 1 && $_SESSION['question_count'] < $max_questions) {
         $question = ""
         // Store all grid variables here.
 ?>
@@ -14,14 +15,14 @@
 </head>
 <body>
     <h1>Questionnaire Prolific ID: <?php echo $_SESSION['ID']; ?></h1>
-    <div class="quiz">
-        <?php echo $allQuestions[0]; ?>
-    </div>
     <div id="memory_board">
         <div id="memory_board_left">
         </div>
         <div id="memory_board_right">
         </div>
+    </div>
+	<div class="quiz">
+        <?php echo $allQuestions[0]; ?>
     </div>
     <p id="TEXT"></p>
     <script>
@@ -47,7 +48,7 @@
 		<input type="hidden" name="t_B_l" id="t_B_l" value="">
 		<input type="hidden" name="t_B_r" id="t_B_r" value="">
 		<input type="hidden" name="rating" id="rating" value="3">
-    <?php if ($_SESSION["question_count"] < 4) { ?>
+    <?php if ($_SESSION["question_count"] < $max_questions-1) { ?>
             <input type="hidden" name="type" id="type" value="next">
             <button type="submit" id="next" onclick="return checkValue(output.value)">Next Question</button>
         <script>
@@ -77,7 +78,14 @@
 <link rel='stylesheet' href='css.css'>
 </head>
 <body>
+<?php if($_SESSION['question_count'] >= $max_questions){
+?>
+You already finished this questionnaire.
+<?php 
+} else {?>
 You need to fill in the consent form first.
+<?php 
+}?>
 </body>
 </html>
 <?php

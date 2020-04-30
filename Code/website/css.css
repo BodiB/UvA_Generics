@@ -36,14 +36,14 @@ h1 {
 
 button {
 	font-family: 'Work Sans', sans-serif;
-	font-size: 22px;
+	font-size: 16px;
 	background-color: #279;
 	color: #fff;
 	border: 0px;
 	border-radius: 3px;
-	padding: 20px;
+	padding: 15px;
 	cursor: pointer;
-	margin-bottom: 20px;
+	margin: 20px;
 }
 
 button:hover {
@@ -218,4 +218,46 @@ div.tile{
     cursor:pointer;
     text-align:center;
     margin: 1px;
+}
+
+
+.edit{
+ width: 100%;
+ height: auto;
+}
+.editMode{
+ border: 1px solid black;
+}
+
+/* Table Layout */
+table {
+ border:1px solid lavender;
+ border-radius:1px;
+}
+
+table tr:nth-child(1){
+ background-color:dodgerblue;
+}
+table tr:nth-child(1) th{
+ color:white;
+ padding:1px 0px;
+ letter-spacing: 1px;
+}
+
+/* Table rows and columns */
+table td{
+ padding:1px;
+}
+table tr:nth-child(even){
+ background-color:lavender;
+ color:black;
+}
+
+select {
+	background-color: #444;
+	color: #fff;
+}
+
+input[type='number']{
+	width: auto;
 }
