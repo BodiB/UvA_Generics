@@ -52,7 +52,7 @@ function newBoard(board, list, v_t, h_t, t_A, t_B, flip) {
     }
     i = 0;
     while (i < size - t_A - t_B) {
-        array.push('https://mycologic-cement.000webhostapp.com/img/UVA-logo.png');
+        array.push('');
         i++;
     }
     if (board == 'memory_board_left') {
@@ -69,10 +69,8 @@ function newBoard(board, list, v_t, h_t, t_A, t_B, flip) {
             output += '<div class="tile", id="tile_' + i + '", data-value="' + array[i] + '" style="width:' + h_size + 'px;height:' + h_size + 'px;background-size: ' + h_size + 'px ' + h_size + 'px;"></div>';
         }
     }
-    if ((v_t * h_size) > 540) {
-        document.getElementById(board).style.height = '' + (v_t * h_size + 4 * v_t + 20) + 'px';
-        document.getElementById("memory_board").style.height = '' + (v_t * h_size + 4 * v_t + 20) + 'px';
-    }
+    document.getElementById(board).style.height = '' + (v_t * h_size + 4 * v_t + 20) + 'px';
+    document.getElementById("memory_board").style.height = '' + (v_t * h_size + 4 * v_t + 20) + 'px';
     // document.getElementById(board).innerHTML = output;
     document.getElementById(board).innerHTML = output;
 }
@@ -87,6 +85,13 @@ function getRandomNode() {
     }
 }
 
+function gridComplete(turned_tiles, size){
+	if (turned_tiles == size) {
+		completeGrid.innerHTML = '';
+        submitButton.style.display = 'inline';
+    }
+}
+
 function memoryFlipTile(tile, val) {
     var turned_tiles = getCookie("turned_tiles");
     var size = getCookie("size");
@@ -94,17 +99,67 @@ function memoryFlipTile(tile, val) {
         turned_tiles++;
         setCookie("turned_tiles", turned_tiles, 1);
         tile.style.background = '#FFF';
-        tile.innerHTML = '<img src="' + val + '" width="' + tile.offsetWidth + 'height=' + tile.offsetWidth + '"/>';
+		if(val == ''){
+			tile.style.backgroundColor = "#FFF";
+		}
+		else{
+			tile.innerHTML = '<img src="' + val + '" width="' + tile.offsetWidth + 'height=' + tile.offsetWidth + '"/>';
+		}
+        
         var myNode = getRandomNode();
-        var myVal = myNode.getAttribute("data-value");
-        myNode.style.background = '#FFF';
-        myNode.innerHTML = '<img src="' + myVal + '" width="' + tile.offsetWidth + 'height=' + tile.offsetWidth + '"/>';
+        var myNode_val = myNode.getAttribute("data-value");
+		if(myNode_val == ''){
+			myNode.style.background = '#FFF';
+			myNode.innerHTML = " ";
+		}
+		else{
+			myNode.innerHTML = '<img src="' + myNode_val + '" width="' + tile.offsetWidth + 'height=' + tile.offsetWidth + '"/>';
+		}
     }
-    if (turned_tiles == size) {
-        alert("Please, rate the statement.");
-        submitButton.style.display = 'inline';
-        // ONLY NOW ALLOW TO GO TO NEXT QUESTION
-    }
+	if(turned_tiles%4==0){
+		var intro = "ATTENTION CHECK \n";
+		var message = ["Doing great!","Still going strong!","Almost there!","Keep up the good work!","Thank you for taking your time!", "Press cancel to continue.", "Mimic the following sentence"];
+		var a = Math.floor(Math.random() * message.length);
+		var oops = "";
+		var oops_count =0;
+
+		if(a==5){
+			while(true){
+				if(window.confirm(intro + message[a] + oops)){
+					oops += "\nOOPS... Keep your focus!"
+					oops_count +=1;
+					if(oops_count % 4 == 0){
+						oops += "\nPLEASE, try the other button..."
+					}
+				}
+				else{
+					break;
+				}
+			}
+		}
+		else if(a==6){
+			var b = Math.floor(Math.random() * message.length);
+			var sentence = ":\n" + message[b];
+			while(true){
+				var promp = window.prompt(intro + message[a]+sentence);
+				if(promp == null){
+					location.reload();
+					break;
+				}
+				else if(promp != message[b]){
+				}
+				else{
+					break;
+				}
+			}
+		}
+		else{
+			window.alert(intro + message[a]);
+		}
+	}
+	if (turned_tiles == size) {
+		gridComplete(turned_tiles, size);
+	}
 }
 
 function createBoard(list, v_t, h_t, t_A_l, t_B_l, t_A_r, t_B_r) {

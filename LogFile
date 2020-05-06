@@ -192,14 +192,28 @@
                  transparent and reproducable.
 
                - TOOL:
-                 + More centered
-                 + White background
+                 + More centered ==Done==
+                 + White background ==Done==
 
                  + Comments:
-                   - Rate statement before last one showed up.
-                   - Delay between turning tiles.
-                   - Replace uva logo with gray background.
-                   - Before showing next button: "PLEASE FINISH THE GRID BEFORE CONTINUEing"
-                   - Add setting for size of scale.
+                   - Rate statement before last one showed up. ==Done== (Removed alert but shows message asking to finish the grid first.)
+                   - Delay between turning tiles. ==Done==
+                   - Replace uva logo with gray background. ==Done==
+                   - Before showing next button: "PLEASE FINISH THE GRID BEFORE CONTINUEing" ==Done== (Together with alert removal)
+                   - Add setting for size of scale (per question). ==Done==
 30-4 Thursday  - Rewriting first draft to have a second review by Patricia.
-1-5 Friday     - (Expected) Finishing first draft and turning it in. *Deadline
+1-5 Friday     - (Expected) Finishing first draft and turning it in. *Deadlinev
+4-5 Monday     - Fixed all notes made 29-4 regarding the tool.
+6-5 Wednesday  - Thesis: Empircal and statistical research (STATISTICAL IS WRONG - FORMAL approach based on probability (or theoretical)).
+			   TODO code:
+				- Do not consent to page - refer to page that says thank you for interest and then back to Prolific.
+				- Add example and explanation.
+				- Copy the following sentence instead of mimic.
+				- Error message if scale centered. =REMOVED, because buttons instead of slider=
+				- Change scale by buttons, all need to be able to have text in them.
+				- WAIT BETWEEN TURNING TILES between the two sides.
+				- Grid finished without other grid finishing.
+				- Clean up the code.
+				- Remove alert box on connections.
+				- Features not linked to statement.
+				- Randomize order of features but all have to be the same. ()

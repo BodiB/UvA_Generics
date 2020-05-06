@@ -21,14 +21,14 @@ $link = new PDO($dsn, $user, $passwd);
 			<option selected>Please select a page</option>
 			<option value="statement.php">Statements</option>
 			<option value="settings.php">Settings</option>
-			<option value="#">?</option>
+			<option value="results.php">Results</option>
 		</select>​
 			<?php 
 			if (isset($_POST['page']) || isset($_SESSION['page'])){
 				if(!isset($_POST['page']) && isset($_SESSION['page'])){
 					$_POST['page'] = $_SESSION['page'];
 				}
-				$pages = array("statement.php", "settings.php");
+				$pages = array("statement.php", "settings.php", "results.php");
 				if (in_array($_POST['page'], $pages)){
 					include($_POST['page']);
 				}

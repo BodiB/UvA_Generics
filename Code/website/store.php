@@ -36,9 +36,13 @@
 	<?php   }
 			else{
 				include('db.php');
-				$_SESSION['question_count'] += 1;
 				$data = $_SESSION['data'];
 				$link = new PDO($dsn, $user, $passwd);
+				$sql = "SELECT count(*) FROM results WHERE prolific_id = '".$_SESSION['ID']."'"; 
+				$result = $link->prepare($sql); 
+				$result->execute(); 
+				$number_of_rows = $result->fetchColumn(); 
+				$_SESSION['question_count'] = $number_of_rows + 1;
 				
 				$statement = $link->prepare('INSERT INTO results (prolific_id, question_num, question, grid_v, grid_h, t_A_l, t_B_l, t_A_r, t_B_r, rating)
 											 VALUES (:prolific_id, :q_num, :question, :grid_v, :grid_h, :t_A_l, :t_B_l, :t_A_r, :t_B_r, :rating)');
@@ -53,7 +57,7 @@
 				   't_B_l' => $data['t_B_l'],
 				   't_A_r' => $data['t_A_r'],
 				   't_B_r' => $data['t_B_r'],
-				   'rating' => $_POST['rating'],
+				   'rating' => $_POST['rangeInput'],
 				]);
 				//$data['allQuestions'] = $allQuestions;
 				if (isset($_POST['type'])) {
@@ -74,7 +78,7 @@
 	<?php
 					} else {
 						$link = new PDO($dsn, $user, $passwd);
-				
+						// TODO REMOVE REWARDED HERE AND LET REWARD BE PLACED SOMEWHERE ELSE!
 						$statement = $link->prepare('UPDATE user 
 													 SET ending_time= NOW(), rewarded = 1 
 													 WHERE prolific_id = :prolific_id');

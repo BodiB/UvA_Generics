@@ -19,6 +19,8 @@ include('dropdown.php');
 		$max_horizontal = trim($row['max_horizontal']);
 		$min_vertical = trim($row['min_vertical']);
 		$max_questions = trim($row['max_questions']);
+		$scale_max = trim($row['scale_max']);
+		$scale_min = trim($row['scale_min']);
 	?>
 		<tr>
 			<td>Min # vertical tiles</td>
@@ -48,6 +50,18 @@ include('dropdown.php');
 			<td>Max # questions</td>
 			<td> 
 				<input type="number" class='edit' id='max_questions-<?php echo $id; ?>' value='<?php echo $max_questions; ?>'>
+			</td>
+		</tr>
+		<tr> 
+			<td>Slider scale min value</td>
+			<td>
+				<input type="number" class='edit' id='scale_min-<?php echo $id; ?>' value='<?php echo $scale_min; ?>'>
+			</td>
+		</tr>
+		<tr> 
+			<td>Slider scale max value</td>
+			<td> 
+				<input type="number" class='edit' id='scale_max-<?php echo $id; ?>' value='<?php echo $scale_max; ?>'>
 			</td>
 		</tr>
 	<?php

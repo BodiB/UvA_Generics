@@ -5,10 +5,12 @@ include('dropdown.php');
 	<tr>
 		<th>Q.no</th>
 		<th>Question</th>
-		<th>Title_left</th>
-		<th>Image_left</th>
-		<th>Title_right</th>
-		<th>Image_right</th>
+		<th>Feature A name</th>
+		<th>Feature A image</th>
+		<th>Feature B name</th>
+		<th>Feature B image</th>
+		<th>Percentage feature left</th>	
+		<th>Percentage feature right</th>
 	</tr>
   <?php 
 	$query = "Select * from generics";
@@ -22,6 +24,10 @@ include('dropdown.php');
 		$title_right = trim($row['Title_right']);
 		$img1 = trim($row['img1']);
 		$img2 = trim($row['img2']);
+		$percentage_A_left = trim($row['percentage_A_left']);
+		$percentage_A_right = trim($row['percentage_A_right']);
+		$percentage_B_left = trim($row['percentage_B_left']);
+		$percentage_B_right = trim($row['percentage_B_right']);
 	?>
 		<tr>
 			<td><?php echo $count; ?></td>
@@ -51,6 +57,18 @@ include('dropdown.php');
 				<?php echo "<img id='img2".$id."' style='display:block;' height='100' src=".$img2.">"; ?> 
 				<?php make_dropdown('img2', $id, $img2) ?>
 				</div>
+			</td>
+			<td> 
+				A:
+				<input type="number" min="0" max="100" class='num_edit' id='percentage_A_left-<?php echo $id; ?>' value='<?php echo $percentage_A_left; ?>'>
+				B:
+				<input type="number" min="0" max="100" class='num_edit' id='percentage_B_left-<?php echo $id; ?>' value='<?php echo $percentage_B_left; ?>'>
+			</td>
+			<td> 
+				A:
+				<input type="number" min="0" max="100" class='num_edit' id='percentage_A_right-<?php echo $id; ?>' value='<?php echo $percentage_A_right; ?>'> 
+				B:
+				<input type="number" min="0" max="100" class='num_edit' id='percentage_B_right-<?php echo $id; ?>' value='<?php echo $percentage_B_right; ?>'>
 			</td>
 		</tr>
 	<?php
@@ -110,6 +128,39 @@ include('dropdown.php');
 			location.reload();  
 		 }
 		}); 
+	 });
+	 
+	 $(".num_edit").focusout(function(){
+	  $(this).removeClass("editMode");
+	  var id = this.id;
+	  var split_id = id.split("-");
+	  var field_name = split_id[0];
+	  var edit_id = split_id[1];
+	  var value = parseInt($(this).val());
+	  var other_field = ((id.replace("A", "C")).replace("B", "A")).replace("C", "B");
+	  if((parseInt($("#"+other_field).val()) + parseInt(value)) > 100){
+		$("#"+id).addClass("error");
+		$("#"+other_field).addClass("error");
+	    if(id.indexOf("left") >= 0){
+		  alert("Sum of left percentage ("+(parseInt($("#"+other_field).val()) + parseInt(value))+"%) features greater than 100%");
+		}
+		else{
+		  alert("Sum of right percentage ("+(parseInt($("#"+other_field).val()) + parseInt(value))+"%) features greater than 100%");
+		}
+	  }
+	  else{
+		$("#"+id).removeClass("error");
+		$("#"+other_field).removeClass("error");
+        $.ajax({
+	     url: 'update.php',
+	     type: 'post',
+	     data: { field:field_name, value:value, id:edit_id },
+	     success:function(response){
+		  console.log('Save successfully'); 
+	     }
+	    });
+	  }
+	 
 	 });
 
 	});
