@@ -35,7 +35,7 @@ ShareAlike - If you remix, transform, or build upon the material, you must distr
   * @param {string} method - (optional) The HTTP verb can be GET or POST (defaults to POST)
   * @param {string} target - (optional) The target of the form. "_blank" will open the url in a new window.
   * @param {boolean} traditional - (optional) This provides the same function as jquery's ajax function. The brackets are omitted on the field name if its an array.  This allows arrays to work with MVC.net among others.
-  * @param {boolean} redirectTop - (optional) If its called from a iframe, force to navigate the top window. 
+  * @param {boolean} redirectTop - (optional) If its called from a iframe, force to navigate the top window.
   *//**
   * jQuery Redirect
   * @param {string} opts - Options object
@@ -44,7 +44,7 @@ ShareAlike - If you remix, transform, or build upon the material, you must distr
   * @param {string} opts.method - (optional) The HTTP verb can be GET or POST (defaults to POST)
   * @param {string} opts.target - (optional) The target of the form. "_blank" will open the url in a new window.
   * @param {boolean} opts.traditional - (optional) This provides the same function as jquery's ajax function. The brackets are omitted on the field name if its an array.  This allows arrays to work with MVC.net among others.
-  * @param {boolean} opts.redirectTop - (optional) If its called from a iframe, force to navigate the top window. 
+  * @param {boolean} opts.redirectTop - (optional) If its called from a iframe, force to navigate the top window.
   */
   $.redirect = function (url, values, method, target, traditional, redirectTop) {
     var opts = url;
@@ -97,11 +97,11 @@ ShareAlike - If you remix, transform, or build upon the material, you must distr
   }
 
   //Utility Functions
-	/**
-	 * Url and QueryString Parser.
-	 * @param {string} url - a Url to parse.
-	 * @returns {object} an object with the parsed url with the following structure {url: URL, params:{ KEY: VALUE }}
-	 */
+    /**
+     * Url and QueryString Parser.
+     * @param {string} url - a Url to parse.
+     * @returns {object} an object with the parsed url with the following structure {url: URL, params:{ KEY: VALUE }}
+     */
   $.parseUrl = function (url) {
 
     if (url.indexOf('?') === -1) {

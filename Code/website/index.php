@@ -1,28 +1,28 @@
 <?php
     session_start();
-	include('db.php');
-	$_SESSION['admin'] = 0;
-	if(isset($_SESSION['ID'])){
-	$selectStatement = "Select count(*)
+    include('db.php');
+    $_SESSION['admin'] = 0;
+    if (isset($_SESSION['ID'])) {
+        $selectStatement = "Select count(*)
                        FROM results
                        WHERE prolific_id = :id";
-	$link = new PDO($dsn, $user, $passwd);
-	$stm = $link->prepare($selectStatement);
-    $stm->execute(['id' => $_SESSION['ID']]);
-	$num_rows = $stm->fetchColumn();
-	
-	$selectAdmins = "Select admin
+        $link = new PDO($dsn, $user, $passwd);
+        $stm = $link->prepare($selectStatement);
+        $stm->execute(['id' => $_SESSION['ID']]);
+        $num_rows = $stm->fetchColumn();
+
+        $selectAdmins = "Select admin
                        FROM user
                        WHERE prolific_id = :id";
-	$link = new PDO($dsn, $user, $passwd);
-	$stmAdmin = $link->prepare($selectAdmins);
-    $stmAdmin->execute(['id' => $_SESSION['ID']]);
-	$row = $stmAdmin->fetch(PDO::FETCH_ASSOC);
-	$_SESSION['admin'] = $row['admin'];
-	
-    $_SESSION["question_count"] = $num_rows;
-    $_SESSION['start'] = date("M,d,Y H:i:s");
-    setcookie('question_count', $_SESSION['question_count'], time() + (86400 * 30), "/"); // 86400 = 1 day
+        $link = new PDO($dsn, $user, $passwd);
+        $stmAdmin = $link->prepare($selectAdmins);
+        $stmAdmin->execute(['id' => $_SESSION['ID']]);
+        $row = $stmAdmin->fetch(PDO::FETCH_ASSOC);
+        $_SESSION['admin'] = $row['admin'];
+    
+        $_SESSION["question_count"] = $num_rows;
+        $_SESSION['start'] = date("M,d,Y H:i:s");
+        setcookie('question_count', $_SESSION['question_count'], time() + (86400 * 30), "/"); // 86400 = 1 day
     setcookie('start', $_SESSION['start'], time() + (86400 * 30), "/"); // 86400 = 1 day
 ?>
 <!DOCTYPE html>
@@ -36,16 +36,15 @@
 <html>
 
 <body>
-    <h1>Questionnaire Prolific ID: <?php echo $_SESSION['ID']; ?></h1> 
-	<div class="TEXT">
-	<?php
-		if($_SESSION['admin'] == 1){
-	?>
-		<button onclick="window.location.href = 'admin.php';">Admin menu</button>	
-	<?php
-		}
-	?>
-	</div>
+    <h1>Questionnaire Prolific ID: <?php echo $_SESSION['ID']; ?></h1>
+    <div class="TEXT">
+    <?php
+        if ($_SESSION['admin'] == 1) {
+            ?>
+        <button onclick="window.location.href = 'admin.php';">Admin menu</button>
+    <?php
+        } ?>
+    </div>
     <div class="quiz-container">
         <div id="quiz">
         </div>
@@ -53,7 +52,7 @@
     <button id="previous">Previous Question</button>
     <button id="next">Next Question</button>
     <form method="POST">
-        <button id="submit" formaction="submit.php">Start Questionnaire </button>
+        <button id="submit" formaction="submit.php">Go to Questionnaire </button>
         <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
     </form>
     <div id="results"></div>
@@ -63,7 +62,7 @@
             alert($(this).val());
         })
 
-    </script> 
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
     <script>
         window.cookieconsent.initialise({
@@ -81,7 +80,8 @@
             }
         });
     </script>
-    <?php } ?>
+    <?php
+    } ?>
 </body>
 
 </html>
