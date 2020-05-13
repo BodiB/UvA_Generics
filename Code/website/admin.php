@@ -13,9 +13,9 @@ $link = new PDO($dsn, $user, $passwd);
 </head>
 <html>
 <body>
-<?php if($_SESSION['admin'] == 1){ ?>
-<h1>Admin Menu</h1> 
-		
+<?php if ($_SESSION['admin'] == 1) { ?>
+<h1>Admin Menu</h1>
+
 	<div class='container'>
 		<select id="dynamic_select">
 			<option selected>Please select a page</option>
@@ -25,22 +25,22 @@ $link = new PDO($dsn, $user, $passwd);
 			<option value="features.php">Features</option>
 			<option value="feedback.php">Feedback</option>
 		</select>​
-			<?php 
-			if (isset($_POST['page']) || isset($_SESSION['page'])){
-				if(!isset($_POST['page']) && isset($_SESSION['page'])){
-					$_POST['page'] = $_SESSION['page'];
-				}
-				$pages = array("statement.php", "settings.php", "results.php","features.php","feedback.php");
-				if (in_array($_POST['page'], $pages)){
-					include($_POST['page']);
-				}
-			}
-			?>
-			
+			<?php
+            if (isset($_POST['page']) || isset($_SESSION['page'])) {
+                if (!isset($_POST['page']) && isset($_SESSION['page'])) {
+                    $_POST['page'] = $_SESSION['page'];
+                }
+                $pages = array("statement.php", "settings.php", "results.php","features.php","feedback.php");
+                if (in_array($_POST['page'], $pages)) {
+                    include($_POST['page']);
+                }
+            }
+            ?>
+
 		<script src="select.js"></script>
 	</div>
-<?php } else{?>
-<h1>No authorization</h1> 
+<?php } else {?>
+<h1>No authorization</h1>
 <?php }?>
 </body>
 

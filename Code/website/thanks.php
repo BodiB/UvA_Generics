@@ -14,30 +14,27 @@ include("var.php");
     <div id="memory_board">
 	    Thank you for filling in this questionnaire.
 		Explanation here on research
-		Do you have any suggestions? (Length, questions, appearance etc.) 
+		Do you have any suggestions? (Length, questions, appearance etc.)
 		Please, leave them in the text field below.
 		<textarea class="suggestions" id="suggestions" rows="4" cols="50"></textarea>
     </div>
 	<?php
-	if($_SESSION['question_count'] >= $max_questions){
-		if($_SESSION['prolific'] == 1){
-		?>
+    if ($_SESSION['question_count'] >= $max_questions) {
+        if ($_SESSION['prolific'] == 1) {
+            ?>
 		<button id="submit" onclick="window.location.href = '#';">Button for prolific reward</button>
 	<?php
-		}
-		else{
-			echo "Thank you for taking your time on this questionnaire.";
-		}
-	}
-	else{
-		if($_SESSION['prolific'] == 1){
-			echo "You did not participate in the questionnaire and you will therefor not receive a reward.";
-		}
-		else{
-			echo "You did not participate in the questionnaire.";
-		}
-	}
-	?>
+        } else {
+            echo "Thank you for taking your time on this questionnaire.";
+        }
+    } else {
+        if ($_SESSION['prolific'] == 1) {
+            echo "You did not participate in the questionnaire and you will therefor not receive a reward.";
+        } else {
+            echo "You did not participate in the questionnaire.";
+        }
+    }
+    ?>
 <script>
 $(document).ready(function(){
 	// Add Class
@@ -57,10 +54,10 @@ $(document).ready(function(){
 	   type: 'post',
 	   data: { value:value, id:edit_id },
 	   success:function(response){
-		console.log('Save successfully'); 
+		console.log('Save successfully');
 	   }
 	  });
-	 
+
 	 });
 	});
 </script>

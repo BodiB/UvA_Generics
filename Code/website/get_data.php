@@ -1,4 +1,4 @@
-<?php  
+<?php
 //MySQL connection details.
 include("db.php");
 
@@ -13,13 +13,11 @@ $result = $link->prepare($query);
 
 //Executre our SQL query.
 $result->execute();
-header('Content-Type: text/csv; charset=utf-8');  
-header('Content-Disposition: attachment; filename=data.csv');  
-$output = fopen("php://output", "w");  
-fputcsv($output, array('ID', 'Name', 'Address', 'Gender', 'Designation', 'Age'));  
-while($row = $result->fetch(PDO::FETCH_ASSOC))  
-{  
-	fputcsv($output, $row);  
-}  
-fclose($output);  
-?> 
+header('Content-Type: text/csv; charset=utf-8');
+header('Content-Disposition: attachment; filename=data.csv');
+$output = fopen("php://output", "w");
+fputcsv($output, array('ID', 'Name', 'Address', 'Gender', 'Designation', 'Age'));
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    fputcsv($output, $row);
+}
+fclose($output);

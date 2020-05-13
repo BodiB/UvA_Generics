@@ -1,7 +1,7 @@
 <?php
     session_start();
     include("var.php");
-	$_SESSION['data'] = $data;
+    $_SESSION['data'] = $data;
     if ($_SESSION["recaptcha"] == 1 && $_SESSION['question_count'] < $max_questions) {
         $question = ""
         // Store all grid variables here.
@@ -12,7 +12,7 @@
 <link rel='stylesheet' href='css.css'>
 <script src="mem.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script> 
+<script>
 	var range = "<?php echo 200/(3-0); ?>";
 	$(document).ready(function(){
 		$("input[type='range']").css({"background": "-webkit-repeating-linear-gradient(90deg, #777, #777 1px, transparent 1px, transparent "+ range +"px) no-repeat 50% 50%",
@@ -54,7 +54,7 @@
 	<form method="post" action="mem.php">
 		<div id="complete_grid">Please finish the grid first.</div>
 		<div id="next" style="width:100%; margin:0 auto;">
-			<?php include("rate_buttons.php");?>
+			<?php include("rate_buttons.php"); ?>
 		</div>
         <script>
             const submitButton = document.getElementById('next');
@@ -76,14 +76,14 @@
 <link rel='stylesheet' href='css.css'>
 </head>
 <body>
-<?php if($_SESSION['question_count'] >= $max_questions){
-?>
+<?php if ($_SESSION['question_count'] >= $max_questions) {
+            ?>
 You already finished this questionnaire.
-<?php 
-} else {?>
+<?php
+        } else {?>
 You need to fill in the consent form first.
-<?php 
-}?>
+<?php
+} ?>
 </body>
 </html>
 <?php

@@ -12,7 +12,7 @@
 <link rel='stylesheet' href='css.css'>
 <script src="mem.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script> 
+<script>
 	var range = "<?php echo 200/($data['scale_max']-$data['scale_min']); ?>";
 	$(document).ready(function(){
 		$("input[type='range']").css({"background": "-webkit-repeating-linear-gradient(90deg, #777, #777 1px, transparent 1px, transparent "+ range +"px) no-repeat 50% 50%",
@@ -94,10 +94,10 @@
 <?php if($_SESSION['question_count'] >= $max_questions){
 ?>
 You already finished this questionnaire.
-<?php 
+<?php
 } else {?>
 You need to fill in the consent form first.
-<?php 
+<?php
 }?>
 </body>
 </html>
