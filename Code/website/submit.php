@@ -14,7 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])
     // Take action based on the score returned:
     if ($recaptcha->score >= 0.5) {
         // Verified - send email
-        $_SESSION["recaptcha"] = 1; ?>
+        $_SESSION["recaptcha"] = 1;
+        ?>
         <!DOCTYPE html>
 
         <head>
@@ -34,4 +35,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])
         $_SESSION["recaptcha"] = 0;
         echo("ROBOT");
     }
+
 } ?>

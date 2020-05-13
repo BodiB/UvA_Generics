@@ -1,6 +1,6 @@
 <?php
 	include('db.php');
-	$query = "INSERT INTO `generics`(`Question`, `Title_left`, `Title_right`, `img1`, `img2`) VALUES ('Question','Left','Right','img/bettle_A.PNG','img/bettle_C.PNG')";
+	$query = "INSERT INTO `features`(`percentage_A_left`, `percentage_A_right`, `percentage_B_left`, `percentage_B_right`) VALUES (50,50,50,50)";
 	$link = new PDO($dsn, $user, $passwd);
 	$stm = $link->prepare($query);
     $stm->execute();

@@ -6,7 +6,7 @@
 	$value = $_POST['value'];
 	$editid = $_POST['id'];
 
-	$query = "UPDATE generics SET ".$field."='".$value."' WHERE id=".$editid;
+	$query = "UPDATE features SET ".$field."='".$value."' WHERE id=".$editid;
 	$link = new PDO($dsn, $user, $passwd);
 	$stm = $link->prepare($query);
     $stm->execute();

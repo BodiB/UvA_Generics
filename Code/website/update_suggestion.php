@@ -1,12 +1,10 @@
 <?php
-
 	include('db.php');
 
-	$field = $_POST['field'];
 	$value = $_POST['value'];
 	$editid = $_POST['id'];
 
-	$query = "UPDATE generics SET ".$field."='".$value."' WHERE id=".$editid;
+	$query = "UPDATE user SET feedback ='".$value."' WHERE prolific_id=".$editid;
 	$link = new PDO($dsn, $user, $passwd);
 	$stm = $link->prepare($query);
     $stm->execute();

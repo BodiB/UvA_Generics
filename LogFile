@@ -220,3 +220,13 @@
 11-5 Monday    - Working on the checklist
 12-5 Tuesday   - Finished last weeks todo list
                - Added the progess bar.
+13-5 Wednesday - Questions:
+				 + Is the data being collected sufficient?
+				 + After the questionnaire question if filled in 'seriously'?
+				 + Username and Password for admin menu?
+				 + Texts to be used in the fields.
+				 + Should the scale of the buttons be saved to the results as well?
+			   - Small todo:
+				 + Non prolif users page.
+				 + Prolific set to true if user came from prolific.
+			   
