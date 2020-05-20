@@ -1,35 +1,16 @@
-<?php
-$_SESSION['data'] = $data;
-setcookie('question_count', $_SESSION['question_count'], time() + (86400 * 30), "/"); // 86400 = 1 day
-$difference = abs($data['scale_min']-$data['scale_max'])+1;
-if ($difference%2 == 0) {
-    // Should not possible, but catch it anyways.
-    $difference = $difference - 1;
-    $blocks = range($data['scale_min'], $data['scale_max']-1);
-} else {
-    $blocks = range($data['scale_min'], $data['scale_max']);
-}
-?>
-<script>
-	$(document).ready(function(){
-		$(".rate-statement li").css({"width":"<?php echo((850-(count($blocks)*30))/count($blocks)); ?>px", "font-size": "<?php echo min(20, (((800-(count($blocks)*35))/count($blocks))/3.5)); ?>px"});
-	});
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel='stylesheet' href='css.css'>
+<script src="mem.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
 <ul class="rate-statement">
-<?php
-$center = ($data['scale_max']+$data['scale_min'])/2;
-$agreement = [$data['scale_min']=>"Strongly disagree", $center=>"Neutral", $data['scale_max']=>"Strongly agree"];
-foreach ($blocks as $key => $value) {
-    echo '<li>';
-    echo '<input type="radio" id="'.$value.'" name="rating" />';
-    if (array_key_exists($value, $agreement)) {
-        echo '<label for="'.$value.'">'.$agreement[$value].'</label>';
-    } else {
-        echo '<label for="'.$value.'"></label>';
-    }
-    echo '</li>';
-}
-
-
-?>
-</ul>
+<li>
+	<input type="radio" id="-3" name="rating" value="-3" onclick="this.form.submit()" />
+	<label for="-3">Strongly disagree</label>
+</li>
+<li><input type="radio" id="-2" name="rating" value="-2" onclick="this.form.submit()" /><label for="-2">Disagree</label></li><li><input type="radio" id="-1" name="rating" value="-1" onclick="this.form.submit()" /><label for="-1">Somewhat disagree</label></li><li><input type="radio" id="0" name="rating" value="0" onclick="this.form.submit()" /><label for="0">Neither agree nor disagree</label></li><li><input type="radio" id="1" name="rating" value="1" onclick="this.form.submit()" /><label for="1">Somewhat agree</label></li><li><input type="radio" id="2" name="rating" value="2" onclick="this.form.submit()" /><label for="2">Agree</label></li><li><input type="radio" id="3" name="rating" value="3" onclick="this.form.submit()" /><label for="3">Strongly agree</label></li></ul>
+</body>
+</html>

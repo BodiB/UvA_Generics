@@ -1,34 +1,47 @@
 <?php
     session_start();
-    include('db.php');
-    include('var.php');
-    $_SESSION['admin'] = 0;
-    if (isset($_SESSION['ID'])) {
-        $selectStatement = "Select count(*)
+	include('db.php');
+	if(isset($_SESSION["question_count"])){
+		include('var.php');
+	}
+	else{
+		header('location:thanks.php');
+	}
+	$_SESSION['admin'] = 0;
+	$num_rows = 0;
+	if(isset($_SESSION['ID'])){
+	$selectStatement = "Select count(*)
                        FROM results
                        WHERE prolific_id = :id";
-        $link = new PDO($dsn, $user, $passwd);
-        $stm = $link->prepare($selectStatement);
-        $stm->execute(['id' => $_SESSION['ID']]);
-        $num_rows = $stm->fetchColumn();
-
-        $selectAdmins = "Select admin, prolific
+	$link = new PDO($dsn, $user, $passwd);
+	$stm = $link->prepare($selectStatement);
+    $stm->execute(['id' => $_SESSION['ID']]);
+	$num_rows = $stm->fetchColumn();
+	
+	$selectAdmins = "Select admin, prolific
                        FROM user
                        WHERE prolific_id = :id";
-        $link = new PDO($dsn, $user, $passwd);
-        $stmAdmin = $link->prepare($selectAdmins);
-        $stmAdmin->execute(['id' => $_SESSION['ID']]);
-        $row = $stmAdmin->fetch(PDO::FETCH_ASSOC);
-        $_SESSION['admin'] = $row['admin'];
-        $_SESSION['prolific'] = $row['prolific'];
-
-        if (count($_SESSION["random_order"]) != $max_questions) {
-            $_SESSION["random_order"] = range(0, $max_questions);
-            shuffle($_SESSION["random_order"]);
-        }
-
-        $_SESSION["question_count"] = $num_rows;
-        $_SESSION['start'] = date("M,d,Y H:i:s"); ?>
+	$link = new PDO($dsn, $user, $passwd);
+	$stmAdmin = $link->prepare($selectAdmins);
+    $stmAdmin->execute(['id' => $_SESSION['ID']]);
+	$row = $stmAdmin->fetch(PDO::FETCH_ASSOC);
+	$_SESSION['admin'] = 0;
+	$_SESSION['prolific'] = $row['prolific'];
+	
+	if(count($_SESSION["random_order"]) != $max_questions){
+		//If for some reason the number of questions changed
+		// this will recalculate the random order of the feature values.
+		$_SESSION["random_order"] = range(0,$max_questions);
+		shuffle($_SESSION["random_order"]);
+	}
+	
+    $_SESSION["question_count"] = $num_rows;
+    $_SESSION['start'] = date("M,d,Y H:i:s");
+	if($_SESSION["question_count"] >= $max_questions){
+		//Already finished the questionnaire once.
+		header('location:thanks.php');
+	}
+?>
 <!DOCTYPE html>
 
 <head>
@@ -40,14 +53,15 @@
 <html>
 
 <body>
-    <h1>Questionnaire Prolific ID: <?php echo $_SESSION['ID']; ?></h1>
+    <h1>Questionnaire Prolific ID: <?php echo $_SESSION['ID']; ?></h1> 
 	<div class="TEXT">
 	<?php
-        if ($_SESSION['admin'] == 1) {
-            ?>
-		<button onclick="window.location.href = 'admin.php';">Admin menu</button>
+		if($_SESSION['admin'] == 1){
+	?>
+		<button onclick="window.location.href = 'admin.php';">Admin menu</button>	
 	<?php
-        } ?>
+		}
+	?>
 	</div>
     <div class="quiz-container">
         <div id="quiz">
@@ -78,8 +92,7 @@
             }
         });
     </script>
-    <?php
-    } ?>
+    <?php } ?>
 </body>
 
 </html>

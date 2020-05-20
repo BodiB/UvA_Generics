@@ -221,12 +221,52 @@
 12-5 Tuesday   - Finished last weeks todo list
                - Added the progess bar.
 13-5 Wednesday - Questions:
-				 + Is the data being collected sufficient?
-				 + After the questionnaire question if filled in 'seriously'?
+				 + Is the data being collected sufficient? =Yes=
+				 + After the questionnaire question if filled in 'seriously'? =Done=
 				 + Username and Password for admin menu?
-				 + Texts to be used in the fields.
-				 + Should the scale of the buttons be saved to the results as well?
+				 + Texts to be used in the fields. =Done=
+				 + Should the scale of the buttons be saved to the results as well? =Done=
 			   - Small todo:
-				 + Non prolif users page.
-				 + Prolific set to true if user came from prolific.
+				 + Non prolific users page.
+				 + Prolific set to true if user came from prolific. ==Done==
+				 + Test in other web-browsers.
+				 + Change color of background. ==Done==
+				 + Decrease amount of waiting time computer. ==Done==
+				 + Check loading of settings.
+				 + Alert even though not turning a tile?? ==Done==
+				 + Ability to add images. ==NO==
+				 + Turn back cards to a random game number-item-number with red cross. ==Done-partially==
+				 + CSV EXPORT! ==Done==
+				 + Other types of attention checks. ==??==
+				 + Add false statements. ==?==
+				 + Link feedback to the participant in the results page. ==Done=
+				 + Center the text within the button. =Better than it was, if need to be better, need to redesign it.=
+				 + Testing - Published setting for menu (so after published the setting.)
+				 
+			   - Keeping score? ==Done==
+			   - Matching both sides ==Done==
+			   - Goal to find ... on your side? ==Done==
+			   - Memory - avoid having the entire picture. ==Done==
+			   - Avoud counting, should be learning. ==Done==
+			   - Memory like game, uncovering 2 at a time. ==Done==
+			   - Possibility for turning both sides (Katrin)
+			   - (Un)matching the opponents turn -scoring-(Patricia) ==Done== (Matching)
+
+15-5 Friday    - Fixed TODO list from wednesday
+			   - TODO:
+			     + Remove "Prolific ID" from website. Call it "Unique" or something like that.
+18-5 Monday    - Minor background research
+19-5 Tuesday   - Minor background research
+20-5 Wednesday - Fixing bugs and comments by Patricia from the email from Tuesday.
+			     + Changed waiting to 500ms each. So open own - 500 ms - oponent close - 500ms - oponent opens - 500ms - close own - repeat...
+				 + Had already seen that bug and had already removed that in the previous update.
+			   - BEFORE PUBLISHING, NEED TO REMOVE KATRIN's mail FROM home page...
+			   - TODO:
+			     + Fixing some minor session and security issues (tonight)
+				 + Cleaning up code before submitting!!
 			   
+			   
+			   
+29-5 Friday - OWN DEADLINE SEND GO NO GO VERSION TO PATRICIA
+5-6 Friday - DEADLINE GO NO GO
+15-6 Friday - DEADLINE FINAL VERSION + Delta-document.

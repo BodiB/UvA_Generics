@@ -1,8 +1,13 @@
 <?php
     session_start();
-    include("var.php");
+    if(isset($_SESSION["question_count"])){
+		include('var.php');
+	}
+	else{
+		header('location:thanks.php');
+	}
 	$_SESSION['data'] = $data;
-    if ($_SESSION["recaptcha"] == 1 && $_SESSION['question_count'] < $max_questions) {
+    if (isset($_SESSION["recaptcha"]) && $_SESSION["recaptcha"] == 1 && $_SESSION['question_count'] < $max_questions) {
         $question = ""
         // Store all grid variables here.
 ?>
@@ -12,7 +17,7 @@
 <link rel='stylesheet' href='css.css'>
 <script src="mem.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
+<script> 
 	var range = "<?php echo 200/($data['scale_max']-$data['scale_min']); ?>";
 	$(document).ready(function(){
 		$("input[type='range']").css({"background": "-webkit-repeating-linear-gradient(90deg, #777, #777 1px, transparent 1px, transparent "+ range +"px) no-repeat 50% 50%",
@@ -29,6 +34,7 @@
 	</div>
 	<div id="snackbar">Please, wait for the computer to finish it's turn.</div>
     <div id="memory_board">
+	<div id="turn" width="100%">Your turn!</div>
         <div id="memory_board_left">
         </div>
         <div id="memory_board_right">
@@ -94,10 +100,10 @@
 <?php if($_SESSION['question_count'] >= $max_questions){
 ?>
 You already finished this questionnaire.
-<?php
+<?php 
 } else {?>
 You need to fill in the consent form first.
-<?php
+<?php 
 }?>
 </body>
 </html>

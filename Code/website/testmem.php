@@ -1,8 +1,13 @@
 <?php
     session_start();
-    include("var.php");
-    $_SESSION['data'] = $data;
-    if ($_SESSION["recaptcha"] == 1 && $_SESSION['question_count'] < $max_questions) {
+    if(isset($_SESSION["question_count"])){
+		include('var.php');
+	}
+	else{
+		header('location:thanks.php');
+	}
+	$_SESSION['data'] = $data;
+    if (isset($_SESSION["recaptcha"]) && $_SESSION["recaptcha"] == 1 && $_SESSION['question_count'] < $max_questions) {
         $question = ""
         // Store all grid variables here.
 ?>
@@ -12,7 +17,7 @@
 <link rel='stylesheet' href='css.css'>
 <script src="mem.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
+<script> 
 	var range = "<?php echo 200/(3-0); ?>";
 	$(document).ready(function(){
 		$("input[type='range']").css({"background": "-webkit-repeating-linear-gradient(90deg, #777, #777 1px, transparent 1px, transparent "+ range +"px) no-repeat 50% 50%",
@@ -28,10 +33,14 @@
 	We will show you a grid together with a statement.</br>
 	You (left side of the grid) will play against a computer opponent (right side of the grid).</br>
 	The both of you will be able to open one tile at a time.</br>
-	During the turning you might expect some pop-ups to check your attention. </br>
-	After opening all tiles you will be able to grade the statement. </br>
+	The goal is to match the tile of your opponent. </br> 
+	You can encounter 3 types of tiles. 2 of which have a figure and distinct features and the 3rd kind is an empty tile.</br> 
+	During the turning you might get some pop-ups to check your attention. </br>
+	After you completed the grid buttons will appear to allow you to rate the correctness of the statement.</br>
+	You can use the grid below to get to know the lay-out of the questionnaire.</br>
 	<div id="snackbar">Please, wait for the computer to finish it's turn.</div>
     <div id="memory_board">
+	<div id="turn" width="100%">Your turn!</div>
         <div id="memory_board_left">
         </div>
         <div id="memory_board_right">
@@ -54,7 +63,7 @@
 	<form method="post" action="mem.php">
 		<div id="complete_grid">Please finish the grid first.</div>
 		<div id="next" style="width:100%; margin:0 auto;">
-			<?php include("rate_buttons.php"); ?>
+			<?php include("rate_buttons.php");?>
 		</div>
         <script>
             const submitButton = document.getElementById('next');
@@ -76,14 +85,14 @@
 <link rel='stylesheet' href='css.css'>
 </head>
 <body>
-<?php if ($_SESSION['question_count'] >= $max_questions) {
-            ?>
+<?php if($_SESSION['question_count'] >= $max_questions){
+?>
 You already finished this questionnaire.
-<?php
-        } else {?>
+<?php 
+} else {?>
 You need to fill in the consent form first.
-<?php
-} ?>
+<?php 
+}?>
 </body>
 </html>
 <?php
