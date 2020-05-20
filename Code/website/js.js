@@ -1,6 +1,6 @@
 (function() {
     // Functions
-    function buildQuiz() {
+    function buildSlides() {
         // variable to store the HTML output
         const output = [];
 
@@ -40,13 +40,13 @@
         );
 
         // finally combine our output list into one string of HTML and put it on the page
-        quizContainer.innerHTML = output.join('');
+        slidesContainer.innerHTML = output.join('');
     }
 
     function showResults() {
 
         // gather answer containers from our quiz
-        const answerContainers = quizContainer.querySelectorAll('.answers');
+        const answerContainers = slidesContainer.querySelectorAll('.answers');
 
         // keep track of user's answers
         let numCorrect = 0;
@@ -125,7 +125,7 @@
     }
 
     // Variables
-    const quizContainer = document.getElementById('quiz');
+    const slidesContainer = document.getElementById('slides');
     const resultsContainer = document.getElementById('results');
     const submitButton = document.getElementById('submit');
     const myQuestions = [{
@@ -152,7 +152,7 @@
     ];
 
     // Kick things off
-    buildQuiz();
+    buildSlides();
 
     // Pagination
     const previousButton = document.getElementById("previous");
