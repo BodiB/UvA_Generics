@@ -20,6 +20,7 @@ The experiment described in this thesis is part of an ongoing investigation by t
     <a href="https://github.com/BodiB/UvA_Generics/issues">Request Feature</a>
   </p>
 </p>
+
 [![Logic and Language - University of Amsterdam][uva-logo]](https://www.illc.uva.nl/Research/Programmes/LoLa/)
 
 <!-- TABLE OF CONTENTS -->
