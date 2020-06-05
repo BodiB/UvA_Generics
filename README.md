@@ -58,25 +58,13 @@ The experiment described in this thesis is part of an ongoing investigation by t
 To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
+A `web server` and a `MySQL database`.
 
 ### Installation
 1. Clone the UvA_Generics
 ```sh
 git clone https://github.com/BodiB/UvA_Generics.git
 ```
-2. Install NPM packages
-```sh
-npm install
-```
-
-## Usage
-### Setting up the experiment.
-1. Set up a `web server` and a `MySQL database`.
 2. Copy all files from the ["Code/website" directory ](https://github.com/BodiB/UvA_Generics/Code/website) into your `public_html` folder.
 3. Import the database file stored in ["Code/database" directory ](https://github.com/BodiB/UvA_Generics/Code/database) into the database you just set-up
 4. Open the `db.php` file and fill in your database information.
@@ -89,6 +77,8 @@ npm install
 8. 
 	- If you wish to use `reCAPTCHA`, go to [https://developers.google.com/recaptcha](https://developers.google.com/recaptcha) and set up you `reCAPTCHA`. Than move to `captcha.js` and `submit.php` in your `public_html` folder and set the necessary values there, these are: `$recaptcha_url` and `$recaptcha_secret` in `submit.php` and `var captchaPublic` in `captcha.js`.  
 	- If you do not wish to use `reCAPTCHA`,  in your `index.php` set the `$_SESSION["recaptcha"]` value to `1`.
+
+## Usage
 ### Gathering data
 Spread the experiment using either the link: `your_url/new_user.php` or when using Prolific, fill in the following link there: `your_url/prolific.php`
 
