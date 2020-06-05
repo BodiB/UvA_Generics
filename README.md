@@ -11,7 +11,7 @@
 The purpose of the experiment is to investigate the claim that generics are formed about a target group through a process of associative learning, which considers both the target of learning as well as a relevant contrast class.
 
 The experiment described in this thesis is part of an ongoing investigation by the Logic and Language (LoLa) research group of the Institute for Logic, Language and Computation (ILLC) of the University of Amsterdam. 
-[![Logic and Language - University of Amsterdam][uva-logo =50x]](https://www.illc.uva.nl/Research/Programmes/LoLa/)
+<a href="Logic and Language - University of Amsterdam"><img src="iamges/UVA-logo.png" alt="Logic and Language - University of Amsterdam" width="200"/></a>
     <br />
     <a href="https://github.com/BodiB/UvA_Generics"><strong>Explore the docs »</strong></a>
     <br />
@@ -137,4 +137,3 @@ Project Link: [https://github.com/BodiB/UvA_Generics](https://github.com/BodiB/U
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/bodi-boelé-52490710a
 [product-screenshot]: images/screenshot.png
-[uva-logo]: images/UVA-logo.png
