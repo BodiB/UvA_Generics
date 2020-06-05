@@ -75,7 +75,7 @@ git clone https://github.com/BodiB/UvA_Generics.git
 	1. The `Max # questions`  setting must match the number of statements and features in the other menu's.*
 	2. The `Referal link back to Prolific` setting can be left empty if Prolific is not used to recruit participants.
 8. 
-	- If you wish to use `reCAPTCHA`, go to [https://developers.google.com/recaptcha](https://developers.google.com/recaptcha) and set up you `reCAPTCHA`. Than move to `captcha.js` and `submit.php` in your `public_html` folder and set the necessary values there, these are: `$recaptcha_url` and `$recaptcha_secret` in `submit.php` and `var captchaPublic` in `captcha.js`.  
+	- If you wish to use `reCAPTCHA`, make sure that the `$_SESSION["recaptcha"]` value in your `index.php` is to `1`. Go to [https://developers.google.com/recaptcha](https://developers.google.com/recaptcha) and set up your `reCAPTCHA`. Then move to `captcha.js` and `submit.php` in your `public_html` folder and set the necessary values there, these are: `$recaptcha_url` and `$recaptcha_secret` in `submit.php` and `var captchaPublic` in `captcha.js`.  
 	- If you do not wish to use `reCAPTCHA`,  in your `index.php` set the `$_SESSION["recaptcha"]` value to `1`.
 
 ## Usage
