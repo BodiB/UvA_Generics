@@ -8,9 +8,9 @@
   <h3 align="center"> A tool to be used in an interactive experiment on the effect of sequential information on the formation of generic beliefs</h3>
 
   <p align="center">
-The purpose of the experiment is to investigate the claim that generics are formed about a target group through a process of associative learning, which considers both the target of learning as well as a relevant contrast class.
+The purpose of the experiment is to investigate the claim that generics are formed about a target group through a process of associative learning, which considers both the target of the learning as well as a relevant contrast class.
 
-The experiment described in this thesis is part of an ongoing investigation by the Logic and Language (LoLa) research group of the Institute for Logic, Language and Computation (ILLC) of the University of Amsterdam. 
+The experiment described in this thesis is part of an ongoing investigation by an NWO research project on generics at the Institute for Logic, Language and Computation (ILLC) of the University of Amsterdam.
 <br />
 <a href="http://www.illc.uva.nl/Research/Programmes/lola/"><img src="images/UVA-logo.png" alt="Logic and Language - University of Amsterdam" width="50"/></a>
     <br />
