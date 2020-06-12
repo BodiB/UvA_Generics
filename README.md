@@ -71,19 +71,19 @@ git clone https://github.com/BodiB/UvA_Generics.git
 2. Copy all files from the ["Code/website" directory ](https://github.com/BodiB/UvA_Generics/Code/website) into your `public_html` folder.
 3. Import the database file stored in ["Code/database" directory ](https://github.com/BodiB/UvA_Generics/Code/database) into the database you just set-up
 4. Open the `db.php` file and fill in your database information.
-5. Open `admin.php` and change the `$username`  and `$password` variables in the first section with the username and password you would like to use to log in to the admin menu.
+5. Open `init.php` and change the variables to your prefered settings.
 6. Go to `your_url/admin.php` and login with the username and password set in step 5.
 7. Set up all necessary values in the `Settings`, `Statements` and `Features` menu.
 *Notes:
 	1. The `Max # questions`  setting must match the number of statements and features in the other menu's.*
 	2. The `Referal link back to Prolific` setting can be left empty if Prolific is not used to recruit participants.
 8.
-	- If you wish to use `reCAPTCHA`, make sure that the `$_SESSION["recaptcha"]` value in your `index.php` is to `1`. Go to [https://developers.google.com/recaptcha](https://developers.google.com/recaptcha) and set up your `reCAPTCHA`. Then move to `captcha.js` and `submit.php` in your `public_html` folder and set the necessary values there, these are: `$recaptcha_url` and `$recaptcha_secret` in `submit.php` and `var captchaPublic` in `captcha.js`.  
-	- If you do not wish to use `reCAPTCHA`,  in your `index.php` set the `$_SESSION["recaptcha"]` value to `1`.
+	- If you wish to use `reCAPTCHA`, make sure that the `$_SESSION["recaptcha"]` value in your `init.php` is to `0`. Go to [https://developers.google.com/recaptcha](https://developers.google.com/recaptcha) and set up your `reCAPTCHA`. Then move to `init.php` in your `public_html` folder and set the necessary values there.
+	- If you do not wish to use `reCAPTCHA`,  in your `init.php` set the `$_SESSION["recaptcha"]` value to `1`.
 
 ## Usage
 ### Gathering data
-Spread the experiment using either the link: `your_url/new_user.php` or when using Prolific, fill in the following link there: `your_url/prolific.php`
+Spread the experiment using either the link: `your_url/new_user.php` or when using Prolific, fill in the following link there: `your_url/prolific.php`, using the `PROLIFIC_PID` option as: `your_url/prolific.php?PROLIFIC_PID=<?>`
 
 ### Evaluating data
 #### Feedback
