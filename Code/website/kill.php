@@ -1,5 +1,5 @@
 <?php
-    session_start();    
+    session_start();
     session_destroy();
 ?>
 <!DOCTYPE html>
@@ -9,8 +9,8 @@
 </head>
 <html>
 
-<body>
-
-</body>
+    <body>
+        Removed all saved details.
+    </body>
 
 </html>

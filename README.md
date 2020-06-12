@@ -43,6 +43,9 @@ The experiment described in this thesis is part of an ongoing investigation by a
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+### Used in this tool:
+* [Mobile Detect Library](http://mobiledetect.net) - http://mobiledetect.net
+
 [![Experiment screenshot][product-screenshot]](https://uva-generics.nl/demo)
 
 
