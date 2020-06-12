@@ -27,14 +27,12 @@ The experiment described in this thesis is part of an ongoing investigation by a
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-  * [Built With](#built-with)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
-* [Roadmap](#roadmap)
 * [Contributing](#contributing)
-* [License](#license)
+<!--* [License](#license)-->
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
 
@@ -42,9 +40,6 @@ The experiment described in this thesis is part of an ongoing investigation by a
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-### Used in this tool:
-* [Mobile Detect Library](http://mobiledetect.net) - http://mobiledetect.net
 
 [![Experiment screenshot][product-screenshot]](https://uva-generics.nl/demo)
 
@@ -116,6 +111,9 @@ Contributions are what make the open source community such an amazing place to b
 Bodi Boele - bodiboele@gmail.com
 
 Project Link: [https://github.com/BodiB/UvA_Generics](https://github.com/BodiB/UvA_Generics)
+
+## Acknowledgements
+* [Mobile Detect Library](http://mobiledetect.net) - http://mobiledetect.net
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
