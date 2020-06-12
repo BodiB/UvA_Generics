@@ -10,3 +10,4 @@
     $stm->execute();
 
     echo 1;
+?>

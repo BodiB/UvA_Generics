@@ -1,4 +1,5 @@
 <?php
+session_start();
 if($_SESSION['admin'] == 1){
     include('db.php');
     $link = new PDO($dsn, $user, $passwd);

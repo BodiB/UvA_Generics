@@ -65,3 +65,4 @@
     $data['t_B_r'] = $t_B_r;
     $data['scale_min'] = $settings['scale_min'];
     $data['scale_max'] = $settings['scale_max'];
+?>

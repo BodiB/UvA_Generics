@@ -1,4 +1,5 @@
 <?php
+session_start();
 if ($_SESSION['admin'] == 1) {
     //MySQL connection details.
     include("db.php");
@@ -28,3 +29,4 @@ if ($_SESSION['admin'] == 1) {
     }
     fclose($output);
 }
+?>

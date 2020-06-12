@@ -32,7 +32,7 @@ if (isset($_SESSION["question_count"])) {
             <?php
 if ((isset($_SESSION['prolific']) && $_SESSION['prolific'] == 1 && $_SESSION["question_count"] >= $max_questions) ||(isset($_SESSION['admin']) && $_SESSION['admin'] == 1)) {
     ?>
-            <button id="submit" class="submit" onclick="window.location.href = '';" style="margin:auto; display:block;">Complete survey participation</button>
+            <button id="submit" class="submit" onclick="window.location.href = 'reward_participant.php';" style="margin:auto; display:block;">Complete survey participation</button>
             <?php
 } else {
         echo "Thank you for voluntarily taking your time on this questionnaire.";

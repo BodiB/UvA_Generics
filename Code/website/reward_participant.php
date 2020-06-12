@@ -1,4 +1,5 @@
 <?php
+session_start();
 if ($_SESSION['prolific'] == 1) {
     include('db.php');
     include('init.php');
@@ -12,12 +13,13 @@ if ($_SESSION['prolific'] == 1) {
 <!DOCTYPE html>
 
 <head>
-    <meta http-equiv="refresh" content="1000;URL=<?php echo $_SESSION['prolific_refer']; ?>">
+    <meta http-equiv="refresh" content="5;URL=<?php echo $_SESSION['prolific_refer']; ?>">
 </head>
 <html>
 
     <body>
-        Thank you, you will be sent back to prolific.
+        Thank you for participating. </br>
+		you will be referred to Prolific.
     </body>
 
 </html>

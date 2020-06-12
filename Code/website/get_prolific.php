@@ -9,3 +9,4 @@ $stmAdmin->execute(['id' => $_SESSION['ID']]);
 $row = $stmAdmin->fetch(PDO::FETCH_ASSOC);
 
 $_SESSION['prolific'] = $row['prolific'];
+?>

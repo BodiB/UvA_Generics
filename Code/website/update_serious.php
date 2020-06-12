@@ -1,4 +1,5 @@
 <?php
+session_start();
 if ($_SESSION['admin'] == 1) {
     include('db.php');
 
@@ -12,3 +13,4 @@ if ($_SESSION['admin'] == 1) {
 
     echo 1;
 }
+?>

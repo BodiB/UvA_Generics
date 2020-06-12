@@ -24,10 +24,10 @@
         if (isset($_SESSION['ID'])) {
             //Count the number of answers the current users has already given.
             //(To prevent multiple participations and be able to continue after stopping during the experiment.)
-            require_once(count_answers.php);
+            require_once('count_answers.php');
 
             // Checks if the current user joined through prolific.
-            require_once(get_prolific.php);
+            require_once('get_prolific.php');
 
             if (count($_SESSION["random_order"]) != $max_questions) {
                 //If for some reason the number of questions changed
@@ -61,7 +61,7 @@
     if ($_SESSION["recaptcha"] == 0) {
         // Recaptcha demanded, load recaptcha script source.
         echo '<script src="https://www.google.com/recaptcha/api.js?render=6LcpSOsUAAAAAKk5EE2MoABHbM75mpNUHz_dlQ3r"></script>';
-        echo '<script src="captcha.js">var public_key = "'. $public_key '";</script>';
+        echo '<script src="captcha.js">var public_key = "'. $public_key .'";</script>';
     } ?>
 </head>
 <html>

@@ -11,3 +11,4 @@ if (isset($_SESSION['ID'])) {
     $num_rows = $stm->fetchColumn();
     $_SESSION['question_count'] = $num_rows + 1;
 }
+?>

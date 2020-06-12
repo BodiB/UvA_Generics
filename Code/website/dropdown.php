@@ -15,3 +15,4 @@ function make_dropdown($var_name, $id, $img)
     }
     echo '</select>';
 }
+?>
