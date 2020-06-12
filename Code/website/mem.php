@@ -1,5 +1,13 @@
 <?php
     session_start();
+	include('db.php');
+	$data = $_SESSION['data'];
+	$link = new PDO($dsn, $user, $passwd);
+	$sql = "SELECT count(*) FROM results WHERE prolific_id = '".$_SESSION['ID']."'"; 
+	$result = $link->prepare($sql); 
+	$result->execute(); 
+	$number_of_rows = $result->fetchColumn(); 
+	$_SESSION['question_count'] = $number_of_rows + 1;
     if(isset($_SESSION["question_count"])){
 		include('var.php');
 	}
@@ -7,7 +15,7 @@
 		header('location:thanks.php');
 	}
 	$_SESSION['data'] = $data;
-    if (isset($_SESSION["recaptcha"]) && $_SESSION["recaptcha"] == 1 && $_SESSION['question_count'] < $max_questions) {
+    if (isset($_SESSION["recaptcha"]) && $_SESSION["recaptcha"] == 1 && $_SESSION['question_count'] <= $max_questions) {
         $question = ""
         // Store all grid variables here.
 ?>
@@ -17,32 +25,32 @@
 <link rel='stylesheet' href='css.css'>
 <script src="mem.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script> 
-	var range = "<?php echo 200/($data['scale_max']-$data['scale_min']); ?>";
-	$(document).ready(function(){
-		$("input[type='range']").css({"background": "-webkit-repeating-linear-gradient(90deg, #777, #777 1px, transparent 1px, transparent "+ range +"px) no-repeat 50% 50%",
-  "background": "-moz-repeating-linear-gradient(90deg, #777, #777 1px, transparent 1px, transparent "+ range +"px) no-repeat 50% 50%",
-  "background": "repeating-linear-gradient(90deg, #777, #777 1px, transparent 1px, transparent "+ range +"px) no-repeat 50% 50%"});
-	});
-</script>
 </head>
 <body>
-    <h1>Questionnaire Prolific ID: <?php echo $_SESSION['ID'];?></h1>
+    <h1 style="margin-bottom:0px">Questionnaire </br> Prolific ID: <?php echo $_SESSION['ID'];?></h1>
 	<div id="myProgress">
-		<?php $progress = ($_SESSION["question_count"]/$max_questions)*100; ?>
+		<?php $progress = (($_SESSION["question_count"]-1)/$max_questions)*100; ?>
 		<div id="myBar" style="width: <?php echo $progress;?>%"><?php echo $progress;?>%</div>
 	</div>
-	<div id="snackbar">Please, wait for the computer to finish it's turn.</div>
+	</br>
+	<div id="snackbar">Please, wait for your turn</div>
+	Here is a new type of animal from the Genovesa and Marchena islands we would like you to learn about:
     <div id="memory_board">
-	<div id="turn" width="100%">Your turn!</div>
+	<div id="turn" width="100%"><B>It's your turn to play.</B></div>
+	</br>
         <div id="memory_board_left">
         </div>
         <div id="memory_board_right">
         </div>
     </div>
-	<div class="quiz">
-        <?php echo $allQuestions[0]; ?>
+	<div id="complete_grid">Please finish playing the game</div>
+	<div class="quiz" id="statement">
+        <?php echo "<B>".$allQuestions[0]."</B>"; //Print the statement?>
     </div>
+	<script>
+	const statement = document.getElementById('statement');
+	statement.style.display = 'none';
+	</script>
     <p id="TEXT"></p>
     <script>
         var list = <?php echo json_encode($data['allQuestions']); ?>;
@@ -60,8 +68,7 @@
 		<input type="hidden" name="t_A_l" id="t_A_l" value="">
 		<input type="hidden" name="t_B_l" id="t_B_l" value="">
 		<input type="hidden" name="t_B_r" id="t_B_r" value="">
-		<div id="complete_grid">Please finish the grid first.</div>
-    <?php if ($_SESSION["question_count"] < $max_questions-1) { ?>
+    <?php if ($_SESSION["question_count"] <= $max_questions-1) { ?>
             <input type="hidden" name="type" id="type" value="next">
 			<div id="next" style="width:100%; margin:0 auto;">
 				<?php include("rate_buttons.php");?>

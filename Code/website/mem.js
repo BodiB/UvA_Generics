@@ -9,36 +9,16 @@ Array.prototype.memory_tile_shuffle = function() {
     }
 }
 
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
+// Global variables to store size and #tiles turned
+var size = 0;
+var turned_tiles = 0;
+var pre_statement = "";
 
 function newBoard(board, list, v_t, h_t, t_A, t_B, flip) {
     var h_size = (document.getElementById("memory_board_right").clientWidth - 18) / h_t;
     h_size = h_size - 4
-    var size = v_t * h_t;
-    setCookie("turned_tiles", 0, 1);
-    setCookie("size", size, 1);
+    size = v_t * h_t;
+	pre_statement = "Does the following statement describe " + list[1] + "?";
     var array = [];
     var i = 0;
     while (i < t_A) {
@@ -71,8 +51,13 @@ function newBoard(board, list, v_t, h_t, t_A, t_B, flip) {
     }
     document.getElementById(board).style.height = '' + (v_t * h_size + 4 * v_t + 45) + 'px';
     document.getElementById("memory_board").style.height = '' + (v_t * h_size + 4 * v_t + 45) + 'px';
-    // document.getElementById(board).innerHTML = output;
     document.getElementById(board).innerHTML = output;
+	document.getElementById("memory_board_left").style.background = "#EEE";
+	//preload images
+	var img=new Image();
+    img.src=list[3];
+	var img=new Image();
+    img.src=list[4];
 }
 
 function getRandomNode() {
@@ -81,21 +66,50 @@ function getRandomNode() {
     if (randomNode.innerHTML == "") {
         return randomNode;
     } else {
-        return getRandomNode()
+        return getRandomNode();
     }
 }
 
 function gridComplete(turned_tiles, size){
-	if (turned_tiles == size) {
-		completeGrid.innerHTML = '';
+	if (turned_tiles >= size) {
+		completeGrid.innerHTML = pre_statement;
         submitButton.style.display = 'inline';
+		statement.style.display = 'inline';
+		return true;
     }
+	return false;
 }
 
-//Global variable to only allow flipping 1 tile at a time.
+//Global variable to only allow flipping 1 tile at a time, keep score and compare stuff.
 var running = false;
 var score = 0;
 var comp_score = 0;
+var active_node = null;
+
+function computer_turn(tile, val, turned_tiles, size){
+    // Let the "computer" turn a tile.
+    var myNode = getRandomNode();
+    var myNode_val = myNode.getAttribute("data-value");
+    if(myNode.getAttribute("data-value") == ''){
+        myNode.style.background = '#FFF';
+        myNode.innerHTML = " ";
+    }
+    else{
+        myNode.innerHTML = '<img src="' + myNode_val + '" width="' + tile.offsetWidth + 'height=' + tile.offsetWidth + '"/>';
+    }
+	document.getElementById("memory_board_right").style.background = "#CCC";
+    if(myNode_val == val){
+        comp_score += 1;
+        document.getElementById("turn").innerHTML = "MATCH!";
+        document.getElementById("turn").style.background = "#90EE90";
+        document.getElementById("right_score").innerHTML = "Score: " + comp_score;
+    }
+    else{
+        document.getElementById("turn").innerHTML = "No match!";
+        document.getElementById("turn").style.background = "#FF4500";
+    }
+    return [myNode, myNode_val];
+}
 
 function fliptTile(tile, val) {
 	if (running){
@@ -107,67 +121,155 @@ function fliptTile(tile, val) {
 		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 	}
 	else{
-		running = true;
-		var turned_tiles = getCookie("turned_tiles");
-		var size = getCookie("size");
-		var nodes = document.getElementsByClassName("tile");
 		if (tile.innerHTML == "") {
-			document.getElementById("turn").innerHTML = "It's up to the computer.";
-			if(turned_tiles>0){
+			running = true;
+			document.getElementById("memory_board_left").style.background = "#CCC";
+			var nodes = document.getElementsByClassName("tile");
+            // Add the turned tile to the counter.
+            turned_tiles++;
+            if(active_node != null){
+                // Computer has turned and player must match
 				attention(turned_tiles);
-				setTimeout(function(){
-					//Flip back te previously turned tile.
-					var nodes = document.getElementsByClassName("tile");
-					for (const node of nodes){
-						if(node.innerHTML != "" && node.innerHTML != "X" && node != tile)
-						{
-							if(node.innerHTML == tile.innerHTML){
-								score += 1;
-								document.getElementById("left_score").innerHTML = "Score: " + score;
-							}
-							node.innerHTML = "X";
-							node.style.backgroundColor = "#E1E1E1";
-						}
-					}
-				}, 500);
-			}
-			// Turn the tile pressed by the player.
-			turned_tiles++;
-			setCookie("turned_tiles", turned_tiles, 1);
-			tile.style.background = '#FFF';
-			if(val == ''){
-				tile.style.backgroundColor = "#FFF";
-				tile.innerHTML = " ";
-			}
-			else{
-				tile.innerHTML = '<img src="' + val + '" width="' + tile.offsetWidth + 'height=' + tile.offsetWidth + '"/>';
-			}      
-			setTimeout(function(){ 
-				// Let the "computer" turn a tile.
-				var myNode = getRandomNode();
-				var myNode_val = myNode.getAttribute("data-value");
-				if(myNode_val == ''){
-					myNode.style.background = '#FFF';
-					myNode.innerHTML = " ";
-				}
-				else{
-					myNode.innerHTML = '<img src="' + myNode_val + '" width="' + tile.offsetWidth + 'height=' + tile.offsetWidth + '"/>';
-				}
-				if(myNode_val == val){
-					comp_score += 1;
-					document.getElementById("right_score").innerHTML = "Score: " + comp_score;
-				}
-				if (turned_tiles >= size) {
-					gridComplete(turned_tiles, size);
-				}	
-				setTimeout(function(){ 
-					//Flip back te previously turned tile.
+                tile.style.background = '#FFF';
+                if(val == ''){
+                    tile.style.backgroundColor = "#FFF";
+                    tile.innerHTML = " ";
+                }
+                else{
+                    tile.innerHTML = '<img src="' + val + '" width="' + tile.offsetWidth + 'height=' + tile.offsetWidth + '"/>';
+                }
+                if(active_node.innerHTML == tile.innerHTML){
+                    score += 1;
+                    document.getElementById("turn").innerHTML = "MATCH!";
+                    document.getElementById("turn").style.background = "#90EE90";
+                    document.getElementById("left_score").innerHTML = "Score: " + score;
+                }
+                else{
+                    document.getElementById("turn").innerHTML = "No match!";
+                    document.getElementById("turn").style.background = "#FF4500";
+                }
+                setTimeout(function(){ 
+					//Flip back te previously turned tiles.
+					tile.style.fontSize = (tile.clientWidth) + 'px';
+					tile.style.lineHeight = (tile.clientWidth) + 'px';
 					tile.innerHTML = "X";
 					tile.style.backgroundColor = "#E1E1E1";
+					active_node.style.fontSize = (tile.clientWidth) + 'px';
+					active_node.style.lineHeight = (tile.clientWidth) + 'px';
+                    active_node.innerHTML = "X";
+					active_node.style.backgroundColor = "#E1E1E1";
+                    active_node = null;
+					var completed = gridComplete(turned_tiles, size);
+					if(!completed){
+						document.getElementById("turn").innerHTML = "<B>It's your turn to play.</B>";
+						document.getElementById("turn").style.background = "transparent";
+						document.getElementById("memory_board_left").style.background = "#EEE";
+						document.getElementById("memory_board_right").style.background = "#CCC";
+					}
+					else{
+						if(comp_score>score){
+							document.getElementById("turn").innerHTML = "You lost!";
+						}
+						else if(score>comp_score){
+							document.getElementById("turn").innerHTML = "You won!";
+						}
+						else{
+							document.getElementById("turn").innerHTML = "It's a tie.";
+						}
+						document.getElementById("turn").style.background = "transparent";
+						document.getElementById("memory_board_left").style.background = "#CCC";
+						document.getElementById("memory_board_right").style.background = "#CCC";
+					}
 					running = false;
-					document.getElementById("turn").innerHTML = "It's your turn!";
-				}, 1500);
-			}, 1000);
+				}, 1200);
+            }
+            else{
+                // Player has turned and computer must try to match
+                document.getElementById("turn").innerHTML = "It's your opponent’s turn to play.";
+                document.getElementById("turn").style.background = "transparent";
+				document.getElementById("memory_board_right").style.background = "#EEE";
+				document.getElementById("memory_board_left").style.background = "#CCC";
+                tile.style.background = '#FFF';
+                if(val == ''){
+                    tile.style.backgroundColor = "#FFF";
+                    tile.innerHTML = " ";
+                }
+                else{
+                    tile.innerHTML = '<img src="' + val + '" width="' + tile.offsetWidth + 'height=' + tile.offsetWidth + '"/>';
+                }
+				
+                setTimeout(function(){                 
+                    var computers_move = computer_turn(tile, val, turned_tiles, size);
+                    myNode = computers_move[0];
+                    myNode_val = computers_move[1];
+                    setTimeout(function(){ 
+						document.getElementById("turn").innerHTML = "It's your opponent’s turn to play.";
+						document.getElementById("turn").style.background = "transparent";
+						document.getElementById("memory_board_right").style.background = "#EEE";
+						document.getElementById("memory_board_left").style.background = "#CCC";
+						tile.style.background = '#FFF';
+                        //Flip back te previously turned tiles.
+						tile.style.fontSize = (tile.clientWidth) + 'px';
+						tile.style.lineHeight = (tile.clientWidth) + 'px';
+                        tile.innerHTML = "X";
+                        tile.style.backgroundColor = "#E1E1E1";
+						myNode.style.fontSize = (tile.clientWidth) + 'px';
+						myNode.style.lineHeight = (tile.clientWidth) + 'px';
+                        myNode.innerHTML = "X";
+                        myNode.style.backgroundColor = "#E1E1E1";
+						document.getElementById("memory_board_right").style.background = "#EEE";
+						if(gridComplete(turned_tiles, size)){
+							if(comp_score>score){
+								document.getElementById("turn").innerHTML = "You lost!";
+							}
+							else if(score>comp_score){
+								document.getElementById("turn").innerHTML = "You won!";
+							}
+							else{
+								document.getElementById("turn").innerHTML = "It's a tie.";
+							}						
+							document.getElementById("turn").style.background = "transparent";
+							document.getElementById("memory_board_left").style.background = "#CCC";
+							document.getElementById("memory_board_right").style.background = "#CCC";
+							running = false;
+						}
+						else{
+							setTimeout(function(){
+								active_node = getRandomNode();
+								if(active_node.getAttribute("data-value") == ''){
+									active_node.style.background = '#FFF';
+									active_node.innerHTML = " ";
+								}
+								else{
+									active_node.innerHTML = '<img src="' + active_node.getAttribute("data-value") + '" width="' + tile.offsetWidth + 'height=' + tile.offsetWidth + '"/>';
+								}
+								var completed = gridComplete(turned_tiles, size);
+								if(!completed){
+									document.getElementById("turn").innerHTML = "<B>It's your turn to play.</B>";
+									document.getElementById("turn").style.background = "transparent";
+									document.getElementById("memory_board_left").style.background = "#EEE";
+									document.getElementById("memory_board_right").style.background = "#CCC";
+								}
+								else{
+									if(comp_score>score){
+										document.getElementById("turn").innerHTML = "You lost!";
+									}
+									else if(score>comp_score){
+										document.getElementById("turn").innerHTML = "You won!";
+									}
+									else{
+										document.getElementById("turn").innerHTML = "It's a tie.";
+									}
+									document.getElementById("turn").style.background = "transparent";
+									document.getElementById("memory_board_left").style.background = "#CCC";
+									document.getElementById("memory_board_right").style.background = "#CCC";
+								}
+								running = false;
+							}, 750);
+						}
+                    }, 1250);
+                }, 750);
+            }
 		}
 		else{
 			running = false;
@@ -176,9 +278,9 @@ function fliptTile(tile, val) {
 }
 
 function attention(turned_tiles){
-	if(turned_tiles%4==0){
+	if(turned_tiles%17==0){
 			var intro = "ATTENTION CHECK \n";
-			var message = ["Doing great!","Still going strong!","Almost there!","Keep up the good work!","Thank you for taking your time!", "Press cancel to continue.", "Copy the following sentence"];
+			var message = ["Doing great!","Still going strong!","Almost there!","Keep up the good work!","Thank you for taking your time!", "Press cancel to continue."];
 			var a = Math.floor(Math.random() * message.length);
 			var oops = "";
 			var oops_count =0;
@@ -197,22 +299,6 @@ function attention(turned_tiles){
 					}
 				}
 			}
-			else if(a==6){
-				var b = Math.floor(Math.random() * message.length);
-				var sentence = ":\n" + message[b];
-				while(true){
-					var promp = window.prompt(intro + message[a]+sentence);
-					if(promp == null){
-						location.reload();
-						break;
-					}
-					else if(promp != message[b]){
-					}
-					else{
-						break;
-					}
-				}
-			}
 			else{
 				window.alert(intro + message[a]);
 			}
@@ -222,8 +308,4 @@ function attention(turned_tiles){
 function createBoard(list, v_t, h_t, t_A_l, t_B_l, t_A_r, t_B_r) {
     newBoard('memory_board_left', list, v_t, h_t, t_A_l, t_B_l, true);
     newBoard('memory_board_right', list, v_t, h_t, t_A_r, t_B_r, false);
-}
-
-function changeFunction(val){
-	document.getElementById("rating").value = val;
 }

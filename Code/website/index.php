@@ -1,5 +1,28 @@
 <?php
     session_start();
+	
+	// Setting recaptcha value for users.
+	// 0 = Use recaptcha, user needs to verify not being a robot.
+	// 1 = No recaptcha, user has already been approved
+	$_SESSION["recaptcha"] = 0;
+	
+	require_once 'Mobile_Detect.php';
+	$detect = new Mobile_Detect;
+	
+	// Any mobile device (phones or tablets).
+	if ( $detect->isMobile() and !$detect->isTablet() ) {
+	?>
+<!DOCTYPE html>
+<head>
+</head>
+<html>
+<body>
+Please use another device (pc, laptop or tablet) to run this questionnaire.
+</body>
+</html>	
+	<?php
+	}
+	else{
 	if(isset($_SESSION["question_count"])){
 		include('db.php');
 		// var.php needs a question count to be able to determine the question to load.
@@ -33,8 +56,14 @@
 	if(count($_SESSION["random_order"]) != $max_questions){
 		//If for some reason the number of questions changed
 		// this will recalculate the random order of the feature values.
-		$_SESSION["random_order"] = range(0,$max_questions);
+		$_SESSION["random_order"] = range(1,$max_questions);
 		shuffle($_SESSION["random_order"]);
+	}
+	if(count($_SESSION["random_order_statement"]) < $max_questions){
+		//Preset the random order of the statements
+		$_SESSION["random_order_statement"] = range(1,$max_questions);
+		shuffle($_SESSION["random_order_statement"]);
+		array_unshift($_SESSION["random_order_statement"],0);
 	}
 	
     $_SESSION["question_count"] = $num_rows;
@@ -52,14 +81,20 @@
 
 <head>
     <link rel='stylesheet' href='css.css'>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-    <script src="https://www.google.com/recaptcha/api.js?render=6LcpSOsUAAAAAKk5EE2MoABHbM75mpNUHz_dlQ3r"></script>
-    <script src="captcha.js"></script>
+	<?php
+	if($_SESSION["recaptcha"] == 0){
+	// Load recaptcha script source.
+	?>
+		<script src="https://www.google.com/recaptcha/api.js?render=6LcpSOsUAAAAAKk5EE2MoABHbM75mpNUHz_dlQ3r"></script>
+		<script src="captcha.js"></script>
+	<?php
+	}
+	?>	
 </head>
 <html>
 
 <body>
-    <h1>Questionnaire Prolific ID: <?php echo $_SESSION['ID']; ?></h1> 
+    <h1>Questionnaire </br> Prolific ID: <?php echo $_SESSION['ID']; ?></h1> 
 	<div class="TEXT">
 	<?php
 		if($_SESSION['admin'] == 1){
@@ -73,32 +108,16 @@
         <div id="slides">
         </div>
     </div>
-    <button id="previous">Previous Question</button>
-    <button id="next">Next Question</button>
-    <form method="POST">
-        <button id="submit" formaction="submit.php">Go to Questionnaire </button>
-        <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
-    </form>
+		<button id="previous">Previous Question</button>
+		<button id="next">Next Question</button>
+		<form method="POST">
+			<button id="submit" formaction="submit.php">Go to Questionnaire </button>
+			<input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+		</form>
     <div id="results"></div>
     <script src="js.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
-    <script>
-        window.cookieconsent.initialise({
-            "palette": {
-                "popup": {
-                    "background": "#000"
-                },
-                "button": {
-                    "background": "#f1d600"
-                }
-            },
-            "position": "bottom-right",
-            "content": {
-                "message": "We store cookies to ensure you get paid after completing this questionnaire."
-            }
-        });
-    </script>
     <?php } ?>
 </body>
 
 </html>
+<?php } ?>

@@ -1,15 +1,15 @@
 <?php
 	include('db.php');
-//    $website = "https://mycologic-cement.000webhostapp.com";
     $selectStatement = "SELECT *
                        FROM generics
-                       ORDER BY RAND()
-                       LIMIT 1";
+                       WHERE id = :id";
     
     $pdo = new PDO($dsn, $user, $passwd);
  
     $stm = $pdo->prepare($selectStatement);
-    $stm->execute();   
+    $stm->execute([
+		   'id' => $_SESSION["random_order_statement"][$_SESSION['question_count']]
+		]); 
     $row = $stm->fetch(PDO::FETCH_ASSOC);
 	
 	$selectSettings = "SELECT *
@@ -22,22 +22,28 @@
     $linkstm->execute();
 	$settings = $linkstm->fetch(PDO::FETCH_ASSOC);
 	
-	
-	$selectFeature = "SELECT *
-                      FROM features
-					  WHERE id = :id";
-    
-    $feat = new PDO($dsn, $user, $passwd);
-	
-	if(empty($_SESSION["random_order"][$_SESSION['question_count']])){
-		$_SESSION["random_order"][$_SESSION['question_count']] = 0;
+	if($_SESSION['question_count'] >= $settings['max_questions']){
+		$feat['percentage_A_left'] = 0;
+		$feat['percentage_B_left'] = 0;
+		$feat['percentage_A_right'] = 0;
+		$feat['percentage_B_right'] = 0;
+		if($_SESSION['prolific'] == 1){
+			$_SESSION['prolific_refer'] = $settings['prolific_ref'];
+		}
 	}
-    $featstm = $feat->prepare($selectFeature);
-	$featstm->execute([
-       'id' => $_SESSION["random_order"][$_SESSION['question_count']],
-    ]);
-	$feat = $featstm->fetch(PDO::FETCH_ASSOC);
-	
+	else{
+		$selectFeature = "SELECT *
+						  FROM features
+						  WHERE id = :id";
+		
+		$feat = new PDO($dsn, $user, $passwd);
+		
+		$featstm = $feat->prepare($selectFeature);
+		$featstm->execute([
+		   'id' => $_SESSION["random_order"][$_SESSION['question_count']],
+		]);
+		$feat = $featstm->fetch(PDO::FETCH_ASSOC);
+	}
 	$allQuestions = [$row['Question'], $row['Title_left'], $row['Title_right'], $row['img1'], $row['img2'], $settings['scale_min'], $settings['scale_max']];
 	$max_questions = $settings['max_questions'];
     $v_t = rand($settings['min_vertical'], $settings['max_vertical']); // Vertical number of tiles
@@ -57,9 +63,11 @@
 		$B_r = $B_r/($A_r + $B_r)*100;
 	}
     $t_A_l = floor($size * $A_l / 100); // #Tiles with occurence of A left (floored)
-    $t_B_l = floor($size * $B_l / 100); // #Tiles with occurence of B left (floored)
+    //$t_B_l = floor($size * $B_l / 100); // #Tiles with occurence of B left (floored)
+	$t_B_l = $size - $t_A_l;
     $t_A_r = floor($size * $A_r / 100); // Percentage of occurence of A right (floored)
-    $t_B_r = floor($size * $B_r / 100); // Percentage of occurence of B right (floored)
+    //$t_B_r = floor($size * $B_r / 100); // Percentage of occurence of B right (floored)
+	$t_B_r = $size - $t_A_r;
 	
 	
 	$data['allQuestions'] = $allQuestions;

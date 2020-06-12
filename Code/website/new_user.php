@@ -1,6 +1,7 @@
 <?php
+	session_destroy();
     session_start();
-	 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
     for ($i = 0; $i < 15; $i++) {
@@ -18,9 +19,16 @@
     $stm->execute(['id' => $_SESSION['ID']]);
 	$row = $stm->fetch(PDO::FETCH_ASSOC);
 	
+	//Set the maximum ammount of questions a user may get.
 	$max_questions = $row['max_questions'];
-	$_SESSION["random_order"] = range(0,$max_questions);
+	//Preset the random order of the features.
+	$_SESSION["random_order"] = range(1,$max_questions);
 	shuffle($_SESSION["random_order"]);
+	
+	//Preset the random order of the statements
+	$_SESSION["random_order_statement"] = range(1,$max_questions);
+	shuffle($_SESSION["random_order_statement"]);
+	array_unshift($_SESSION["random_order_statement"],0);
 
     $link = new PDO($dsn, $user, $passwd);
     $selectStatement = "SELECT *
@@ -62,7 +70,6 @@
 <html>
 
 <body>
-	<?php echo $row['rewarded']; ?>
 </body>
 
 </html>

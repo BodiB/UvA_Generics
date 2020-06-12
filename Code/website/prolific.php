@@ -14,8 +14,13 @@
 	$row = $stm->fetch(PDO::FETCH_ASSOC);
 	
 	$max_questions = $row['max_questions'];
-	$_SESSION["random_order"] = range(0,$max_questions);
+	$_SESSION["random_order"] = range(1,$max_questions);
 	shuffle($_SESSION["random_order"]);
+	
+	//Preset the random order of the statements
+	$_SESSION["random_order_statement"] = range(1,$max_questions);
+	shuffle($_SESSION["random_order_statement"]);
+	array_unshift($_SESSION["random_order_statement"],0);
 
     $link = new PDO($dsn, $user, $passwd);
     $selectStatement = "SELECT *
@@ -57,7 +62,6 @@
 <html>
 
 <body>
-	<?php echo $row['rewarded']; ?>
 </body>
 
 </html>

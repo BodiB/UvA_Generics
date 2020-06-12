@@ -24,51 +24,36 @@ if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1){
 		}
 		if((isset($_SESSION['question_count']) && $_SESSION['question_count'] >= $max_questions)||(isset($_SESSION['admin']) && $_SESSION['admin'] == 1)){
 		?>
-		<div id="rate_first">
-			Finally, please be honest when answering the following question. </br>
-			<B>Your answer will not affect your payment or eligibility for future studies.</B></br></br>
-			The study you have just participated in is a psychological study aimed at understanding human cognition and behavior. Psychological research depends on participants like you. Your responses to surveys like this one are an incredibly valuable source of data for researchers. It is therefore crucial for research that participants pay attention, avoid distractions, and take all study tasks seriously (even when they might seem silly).</br></br>
-			<B>Do you feel that you paid attention, avoided distractions, and took this survey seriously?</B></br>
-			<input type="radio" class="rate" id="rate" name="rating" value="No, I was distracted."  />
-			<label for="">No, I was distracted</label>
-			</br>
-			<input type="radio" class="rate" id="rate" name="rating" value="No, I had trouble paying attention."  />
-			<label for="">No, I had trouble paying attention.</label>
-			</br>
-			<input type="radio" class="rate" id="rate" name="rating" value="No, I did not take this survey seriously."  />
-			<label for="">No, I did not take this survey seriously.</label>
-			</br>
-			<input type="radio" class="rate" id="rate" name="rating" value="No, something else affected my participation negatively."  />
-			<label for="">No, something else affected my participation negatively.</label>
-			</br>
-			<input type="radio" class="rate" id="rate" name="rating" value="Yes." />
-			<label for="">Yes.</label>
-			</br>
-			<script>
-			$(document).ready(function(){
-				// Add Class
-				 $('.rate').click(function(){
-				  var edit_id = <?php echo $_SESSION['ID']; ?>;
-				  var value = $(this).val();
+		Thank you for filling in this questionnaire.</br>
+		Do you have any suggestions? (Length, questions, appearance, correctness, lay-out etc.)</br> 
+		Please, leave them in the text field below.</br>
+		<textarea class="suggestions" id="suggestions" rows="4" cols="50"></textarea>		
+		</br>
+		<button onclick="submittedText()">Submit suggestions.</button>
+		<p id="submitted"></p>
+		<script>
+			function submittedText() {
+			  document.getElementById("submitted").innerHTML = "Stored your feedback.";
+			}
+		</script>
 
-				  $.ajax({
-				   url: 'update_serious.php',
-				   type: 'post',
-				   data: { value:value, id:edit_id },
-				   success:function(response){
-					console.log('Save successfully');
-					$(".submit").css("display","inline-block")
-				   }
-				  });
-				 });
-				});
-			</script>
-		</div>
-		<form method="post" action="thanks1.php" id="form1">
+		<form method="post" action="debrief.php" id="form1">
 			<button type="submit" form="form1" style="margin:auto; display:block;">>></button>
 		</form>
 		</br>
 			<?php
+				if((isset($_SESSION['prolific']) && $_SESSION['prolific'] == 1)||(isset($_SESSION['admin']) && $_SESSION['admin'] == 1)){
+				?>
+				<button id="submit" class="submit" onclick="window.location.href = '#';">Button for prolific reward</button>
+				<script>
+					const submitButton = document.getElementById('submit');
+					submitButton.style.display = 'none';
+				</script>
+			<?php
+				}
+				else{
+					echo "Thank you for voluntarily taking your time on this questionnaire.";
+				}
 			}
 			else{
 				if(isset($_SESSION['prolific']) && $_SESSION['prolific'] == 1){

@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    if(isset($_SESSION["question_count"])){
+		include('var.php');
+	}
+	else{
+		header('location:thanks.php');
+	}
+	$_SESSION['data'] = $data;
+    if (isset($_SESSION["recaptcha"]) && $_SESSION["recaptcha"] == 1 && $_SESSION['question_count'] < $max_questions) {
+        $question = ""
+        // Store all grid variables here.
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,11 +19,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-<ul class="rate-statement">
-<li>
-	<input type="radio" id="-3" name="rating" value="-3" onclick="this.form.submit()" />
-	<label for="-3">Strongly disagree</label>
-</li>
-<li><input type="radio" id="-2" name="rating" value="-2" onclick="this.form.submit()" /><label for="-2">Disagree</label></li><li><input type="radio" id="-1" name="rating" value="-1" onclick="this.form.submit()" /><label for="-1">Somewhat disagree</label></li><li><input type="radio" id="0" name="rating" value="0" onclick="this.form.submit()" /><label for="0">Neither agree nor disagree</label></li><li><input type="radio" id="1" name="rating" value="1" onclick="this.form.submit()" /><label for="1">Somewhat agree</label></li><li><input type="radio" id="2" name="rating" value="2" onclick="this.form.submit()" /><label for="2">Agree</label></li><li><input type="radio" id="3" name="rating" value="3" onclick="this.form.submit()" /><label for="3">Strongly agree</label></li></ul>
+    <h1>Questionnaire Introduction </br> Prolific ID: <?php echo $_SESSION['ID']; ?></h1>
+	<p></p>
+	<div id="next" style="width:100%; margin:0 auto;">
+		<?php 
+		$data['scale_min'] = 0;
+		$data['scale_max'] = 8;
+		include("rate_buttons.php");?>
+	</div>
+	
 </body>
 </html>
+	<?php } ?>

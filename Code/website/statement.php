@@ -1,5 +1,6 @@
 <?php 
 include('dropdown.php');
+include('var.php');
 ?>
 <table width='100%' border='0'>
 	<tr>
@@ -24,7 +25,7 @@ include('dropdown.php');
 		$img2 = trim($row['img2']);
 	?>
 		<tr>
-			<td><?php echo $count; ?></td>
+			<td><?php if($id == 0){echo "Practice question";} else{echo $id;} ?></td>
 			<td> 
 				<div contentEditable='true' class='edit' id='Question-<?php echo $id; ?>'> 
 				<?php echo $question; ?>
@@ -59,6 +60,17 @@ include('dropdown.php');
 	?> 
 	<tr>
 		<td colspan="5">
+		<?php
+		if(($count-2) < 0){
+			echo "You need to set up ".$max_questions." questions to be able to execute the experiment.";
+		}
+		elseif(($count-2) < $max_questions){
+			echo "You have initialised ".($count-2). " questions, you need at least ".$max_questions." to be able to execute the experiment.";
+		}
+		else{
+			echo "You set up ".($count-2). " questions, you will use statements 1-".$max_questions." to be able to execute the experiment.";
+		}
+		?>
 		</td>
 		<td>
 			<button onclick="window.location.href = 'new_entry.php';">Add new statement</button>	

@@ -1,9 +1,17 @@
 <?php
 	include('db.php');
-	$query = "INSERT INTO `generics`(`Question`, `Title_left`, `Title_right`, `img1`, `img2`) VALUES ('Question','Left','Right','img/bettle_A.PNG','img/bettle_C.PNG')";
+	$link = new PDO($dsn, $user, $passwd);
+	
+	$query1 = "SELECT Id FROM `generics`";
+	$stm1 = $link->prepare($query1);
+    $stm1->execute();
+	$count = $stm1->rowCount();
+	$next = $count;
+	
+	$query = "INSERT INTO `generics`(`Id`, `Question`, `Title_left`, `Title_right`, `img1`, `img2`) VALUES (?, 'Question','Left','Right','img/beetle_A.PNG','img/beetle_C.PNG')";
 	$link = new PDO($dsn, $user, $passwd);
 	$stm = $link->prepare($query);
-    $stm->execute();
+    $stm->execute([$next]);
 
 	echo 1;
 ?>

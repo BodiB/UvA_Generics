@@ -22,6 +22,7 @@ Please, ensure to keep these settings unchanged throughout running your experime
 		$max_questions = trim($row['max_questions']);
 		$scale_max = trim($row['scale_max']);
 		$scale_min = trim($row['scale_min']);
+		$prolific_ref = trim($row['prolific_ref']);
 	?>
 		<tr>
 			<td>Min # vertical tiles</td>
@@ -54,15 +55,21 @@ Please, ensure to keep these settings unchanged throughout running your experime
 			</td>
 		</tr>
 		<tr> 
-			<td>Slider scale min value</td>
+			<td>Response scale min value</td>
 			<td>
 				<input type="number" class='edit_scale' id='scale_min-<?php echo $id; ?>' value='<?php echo $scale_min; ?>'>
 			</td>
 		</tr>
 		<tr> 
-			<td>Slider scale max value</td>
+			<td>Response scale max value</td>
 			<td> 
 				<input type="number" class='edit_scale' id='scale_max-<?php echo $id; ?>' value='<?php echo $scale_max; ?>'>
+			</td>
+		</tr>
+		<tr> 
+			<td>Referal link back to Prolific</td>
+			<td> 
+				<input type="text" class='edit1' id='prolific_ref-<?php echo $id; ?>' value='<?php echo $prolific_ref; ?>'>
 			</td>
 		</tr>
 	<?php

@@ -64,11 +64,30 @@ if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1){
 				});
 			</script>
 		</div>
-		<form method="post" action="thanks1.php" id="form1">
-			<button type="submit" form="form1" style="margin:auto; display:block;">>></button>
+		</br>
+		Thank you for filling in this questionnaire.</br>
+		Do you have any suggestions? (Length, questions, appearance, correctness, lay-out etc.)</br> 
+		Please, leave them in the text field below.</br>
+		<textarea class="suggestions" id="suggestions" rows="4" cols="50"></textarea>
+		</br>
+		<button>Submit suggestions.</button>
+		<form method="post" action="debrief.php" id="form1">
+			<button type="submit" form="form1" value="Get some background on the research" style="margin-left:auto; margin-right:auto; text-align:center;">Get some background on the research</button>
 		</form>
 		</br>
 			<?php
+				if((isset($_SESSION['prolific']) && $_SESSION['prolific'] == 1)||(isset($_SESSION['admin']) && $_SESSION['admin'] == 1)){
+				?>
+				<button id="submit" class="submit" onclick="window.location.href = '#';">Button for prolific reward</button>
+				<script>
+					const submitButton = document.getElementById('submit');
+					submitButton.style.display = 'none';
+				</script>
+			<?php
+				}
+				else{
+					echo "Thank you for voluntarily taking your time on this questionnaire.";
+				}
 			}
 			else{
 				if(isset($_SESSION['prolific']) && $_SESSION['prolific'] == 1){

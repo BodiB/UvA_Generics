@@ -1,22 +1,17 @@
 <?php
     session_start();
-    if(isset($_SESSION["question_count"])){
-		$_SESSION["question_count"] = 0;
-		include('var.php');
-	}
-	else{
-		header('location:thanks.php');
-	}
+    $_SESSION["question_count"] = 1;
+	include('../var.php');
 	$_SESSION['data'] = $data;
-    if (isset($_SESSION["recaptcha"]) && $_SESSION["recaptcha"] == 1 && $_SESSION['question_count'] <= $max_questions) {
+    if (isset($_SESSION["recaptcha"]) && $_SESSION["recaptcha"] == 1 && $_SESSION['question_count'] < $max_questions) {
         $question = ""
         // Store all grid variables here.
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel='stylesheet' href='css.css'>
-<script src="mem.js"></script>
+<link rel='stylesheet' href='../css.css'>
+<script src="../mem.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script> 
 	var range = "<?php echo 200/(3-0); ?>";
@@ -53,9 +48,8 @@ Let’s start with a practice round:
         <div id="memory_board_right">
         </div>
     </div>
-	<div id="complete_grid">Please finish playing the game</div>
 	<div class="quiz" id="statement">
-        <?php echo "<B>".$allQuestions[0]."</B>"; //Print the statement?>
+        Genovesa birds have blue wings.
     </div>
 	<script>
 	const statement = document.getElementById('statement');
@@ -63,16 +57,17 @@ Let’s start with a practice round:
 	</script>
     <p id="TEXT"></p>
     <script>
-        var list = <?php echo json_encode($data['allQuestions']); ?>;
-        var v_t = 2; // Vertical number of tiles
-        var h_t = 2; // Horizontal number of tiles
-        var t_A_l = 2; // Tiles with occurence of A left (floored)
-        var t_B_l = 2; // Tiles with occurence of B left (floored)
-        var t_A_r = 2; // Tiles with occurence of A right (floored)
-        var t_B_r = 2; // Tiles with occurence of B right (floored)
+        var list = ["Genovesa birds are completely blue", "Genovesa birds", "Marchena birds", "../img/bird_A.PNG", "../img/bird_C.PNG", "0", "3"];
+        var v_t = 5; // Vertical number of tiles
+        var h_t = 5; // Horizontal number of tiles
+        var t_A_l = 15; // Tiles with occurence of A left (floored)
+        var t_B_l = 10; // Tiles with occurence of B left (floored)
+        var t_A_r = 13; // Tiles with occurence of A right (floored)
+        var t_B_r = 12; // Tiles with occurence of B right (floored)
         createBoard(list,v_t, h_t, t_A_l, t_B_l, t_A_r, t_B_r);
     </script>
-	<form method="post" action="ready.php">
+	<form method="post" action="index.php">
+		<div id="complete_grid">Please finish playing the game</div>
 		<div id="next" style="width:100%; margin:0 auto;">
 			<?php include("rate_buttons.php");?>
 		</div>

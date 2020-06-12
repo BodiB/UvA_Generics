@@ -102,8 +102,8 @@
         }
         if (myQuestions[currentSlide].correctAnswer == '0') {
             if (currentSlide == 1){
-                document.getElementById("next").innerHTML = "I have read and understand the explanations and I voluntarily consent to participate in this study.";
-                document.getElementById("previous").innerHTML = "I do not consent to participate in this study."
+                document.getElementById("next").innerHTML = "I have read and understand the explanations. </br> I voluntarily consent to participate in this study.";
+                document.getElementById("previous").innerHTML = "I do not consent. </br> I do not want to participate in this study."
             }
             else{
             document.getElementById("next").innerHTML = ">>";
@@ -131,7 +131,7 @@
     const myQuestions = [{
             question: "Welcome!",
             answers: {
-                0: "Thank you for taking interest in this study! We invite you to participate in a research study on language production and comprehension. In this survey you will be asked to judge whether a sentence can be correctly asserted in a given scenario. Completing the survey will take you approximately 4 minutes.  Please complete this survey in one go. In other words, please only participate in this survey, if you have 4 to 6 minutes that you can dedicate to it.  If you would like to contact the Principal Investigator in the study to discuss this research, please e-mail k.schulz@uva.nl."
+                0: "Thank you for taking interest in this study! We invite you to participate in a research study on language production and comprehension. In this survey you will be asked to judge whether a sentence can be correctly asserted in a given scenario. </br></br> Completing the survey will take you approximately 12 minutes.  Please complete this survey in one go. In other words, please only participate in this survey if you have 10 to 15 minutes that you can dedicate to it. </br></br>If you would like to contact the Principal Investigator in the study to discuss this research, please e-mail k.schulz@uva.nl."
             },
             correctAnswer: "0"
         },

@@ -250,7 +250,7 @@
 			   - Avoud counting, should be learning. ==Done==
 			   - Memory like game, uncovering 2 at a time. ==Done==
 			   - Possibility for turning both sides (Katrin)
-			   - (Un)matching the opponents turn -scoring-(Patricia) ==Done== (Matching)
+			   - (Un)matching the opponent’s turn -scoring-(Patricia) ==Done== (Matching)
 
 15-5 Friday    - Fixed TODO list from wednesday
 			   - TODO:
@@ -262,13 +262,13 @@
 				 + Had already seen that bug and had already removed that in the previous update.
 			   - BEFORE PUBLISHING, NEED TO REMOVE KATRIN's mail FROM home page...
 			   - TODO:
-			     + Fixing some minor session and security issues (tonight).
-				 + Preloading images!!!
-				 + Computer should be more human.
-				 + SIGNAL MATCH / NO MATCH.
-				 + Matching in duo's.
-				 + X's bigger on the test grid.
-				 + Statement hidden till buttons appear.
+			     + Fixing some minor session and security issues (tonight). ==done==
+				 + Preloading images!!! ==done==
+				 + Computer should be more human. ==done==
+				 + SIGNAL MATCH / NO MATCH. ==done==
+				 + Matching in duo's. ==done==
+				 + X's bigger on the test grid. ==done==
+				 + Statement hidden till buttons appear. ==done==
 				 + Cleaning up code before submitting!!
 			   - Analysing data? Extra meeting next week? (Monday?)
 			   - Sample size? 25?
@@ -285,10 +285,88 @@
 			   - Exam on wednesday from 13h-15h
 			   - Goal: Friday have a version of the thesis for Patricia to correct and such.
 			   
+25-5 Monday    - Finding and fixing bugs
+26-5 Tuesday   - idem and meeting
+27-5 Wednesday - first pilot experiment			   
+28-5 Thursday  - Meeting Patricia
+			   - Button width on the consent form page.==DONE==
+			   - Prolific ID on new line ==DONE==
+			   - AUTO INCREMENT 2??!?!?!?!
 			   
+			   introduction.php
+			   - island. Because ==DONE==
+			   - After colouring: Here is a map of the island ==DONE==
+			   - remove [MAP of islands] ==DONE==
+			   - play. In this game ==DONE==
 			   
+			   welcome.php
+			   - ... "Completing the survey" on a new line ==DONE==
+			   - ... "If you would like" new line ==DONE==
+			   - 4 to 6 and 4 should be 10-15 and 12  ==DONE==
 			   
+			   testmem.php
+			   - Bullet points when then then. ==DONE==
+			   - wins a point. Otherwise no one... ==DONE==
+			   - More white space between grid and text, text and bottom of page. ==DONE==
+			   - BOLD "It's your turn to play." "It's your opponent’s turn to play." ==DONE==
+			   - More space between statement and bottom of grid and buttons. ==DONE==
+			   - "Statement to answer???" ==DONE==
+			   - "Please, wait for your turn" instead of 'await...' ==DONE==
+			   - "Practice button" refers to 'screen 3'. ==DONE==
 			   
-29-5 Friday - OWN DEADLINE SEND GO NO GO VERSION TO PATRICIA
-5-6 Friday - DEADLINE GO NO GO
-15-6 Friday - DEADLINE FINAL VERSION + Delta-document.
+			   mem.php
+			   - NO match stuck instead of "opponnent" showing. =Done= 
+			   - YOU WON. =Done=
+			   
+			   thanks.php
+			   - Text not centered. =Done= 
+			   - 3 pages: =Done= 
+			   - BACK TO PROLIFIC BUTTON. =Done=  *TODO SETTING WHERE TO RETURN TO.
+			   
+			   debrief.php
+			   - Between them and in particular line break.
+			   - see: line break and italics
+			   
+			   - 1 attention check in the middel statement and a scale, no grid. "Please select ... [somewhat disagree] ... "
+			   
+29-5 Friday    - Bug fixing
+30-5 Saturday  - Bug fixing
+31-5 Sunday    - DEADLINE SEND GO NO GO VERSION TO PATRICIA
+TODO LIST:
+- Fix javascript and show user when something is submitted. (For example their feedback)
+- Security and other issues!
+- Clean up the code!
+- Fix bug incrementing two...
+- reCapTcha fixing
+
+1-6 Monday     - 4 PM meeting - became 2pm.
+
+3-6 Wednesday  - 23.59 send to Patricia (OR THURSDAY EARLY MORNING AT LATEST, SO SHE HAS SOME TIME TO PRE-READ) 
+4-6 Thursday   - 2 PM meeting!!
+
+5-6 Friday     - DEADLINE GO NO GO
+15-6 Friday    - DEADLINE FINAL VERSION + Delta-document.
+
+
+- Formal relevance: tries to formulate an abstract model of an abstract model that describes 
+can not cover all actual used cases. Effort is to have a theory that is abstract such that it makes sense.
+
+- Empirical relevance: relevance to the experiment!
+
+Robert and Katrin, reason for experiment: 
+- People look at contrast
+- Reason why people take into account this contrast is a learning process ...-Wagner rule learning rule about conditioning.
+ Pavlov example about dog and ...? Correlation between trigger and result.
+ Model not only because correlation between objects (bell and food), but also the anti case -> no bell, no food.
+ We think generics are true because we learn them in this sequential way. Associative learning -> so sequential experiment!
+ 
+
+-- ToDo
+- Recaptcha back to version 2
+- Remove possibility to fill-in feature B - quick fixed
+- Statements only allowed to appear once. - Fixed
+- Prompt above the statement. - Done
+- Adding the possibility to fill in the test question. [Index 0] - Done
+- Writing the ReadMe - Done
+- Security and other issues!
+- Clean up the code!
