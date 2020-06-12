@@ -1,44 +1,27 @@
+
 <!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
+[![Contributors][contributors-shield]][contributors-url] [![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url] [![Issues][issues-shield]][issues-url] [![MIT License][license-shield]][license-url] [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/BodiB/UvA_Generics">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">YOUR_TITLE</h3>
+  <h3 align="center"> A tool to be used in an interactive experiment on the effect of sequential information on the formation of generic beliefs</h3>
 
   <p align="center">
-    YOUR_SHORT_DESCRIPTION
+The purpose of the experiment is to investigate the claim that generics are formed about a target group through a process of associative learning, which considers both the target of the learning as well as a relevant contrast class.
+
+The experiment described in this thesis is part of an ongoing investigation by an NWO research project on generics at the Institute for Logic, Language and Computation (ILLC) of the University of Amsterdam.
+<br />
+<a href="http://www.illc.uva.nl/Research/Programmes/lola/"><img src="images/UVA-logo.png" alt="Logic and Language - University of Amsterdam" width="50"/></a>
     <br />
     <a href="https://github.com/BodiB/UvA_Generics"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/BodiB/UvA_Generics">View Demo</a>
-    ·
-    <a href="https://github.com/BodiB/UvA_Generics/issues">UvA_Genericsrt Bug</a>
+    <a href="http://uva-generics.nl/demo/">View Demo</a>
     ·
     <a href="https://github.com/BodiB/UvA_Generics/issues">Request Feature</a>
   </p>
 </p>
-
-
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
@@ -60,60 +43,50 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`BodiB`, `UvA_Generics`, `twitter_handle`, `email`
+[![Experiment screenshot][product-screenshot]](https://uva-generics.nl/demo)
 
 
-### Built With
+### Languages used
+* AJAX
+* CSS
+* HTML
+* JavaScript
+* jQuery
+* PHP
 
-* []()
-* []()
-* []()
-
-
-
-<!-- GETTING STARTED -->
 ## Getting Started
-
 To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
+A `web server` and a `MySQL database`.
 
 ### Installation
- 
 1. Clone the UvA_Generics
 ```sh
 git clone https://github.com/BodiB/UvA_Generics.git
 ```
-2. Install NPM packages
-```sh
-npm install
-```
+2. Copy all files from the ["Code/website" directory ](https://github.com/BodiB/UvA_Generics/Code/website) into your `public_html` folder.
+3. Import the database file stored in ["Code/database" directory ](https://github.com/BodiB/UvA_Generics/Code/database) into the database you just set-up
+4. Open the `db.php` file and fill in your database information.
+5. Open `admin.php` and change the `$username`  and `$password` variables in the first section with the username and password you would like to use to log in to the admin menu.
+6. Go to `your_url/admin.php` and login with the username and password set in step 5.
+7. Set up all necessary values in the `Settings`, `Statements` and `Features` menu.
+*Notes:
+	1. The `Max # questions`  setting must match the number of statements and features in the other menu's.*
+	2. The `Referal link back to Prolific` setting can be left empty if Prolific is not used to recruit participants.
+8.
+	- If you wish to use `reCAPTCHA`, make sure that the `$_SESSION["recaptcha"]` value in your `index.php` is to `1`. Go to [https://developers.google.com/recaptcha](https://developers.google.com/recaptcha) and set up your `reCAPTCHA`. Then move to `captcha.js` and `submit.php` in your `public_html` folder and set the necessary values there, these are: `$recaptcha_url` and `$recaptcha_secret` in `submit.php` and `var captchaPublic` in `captcha.js`.  
+	- If you do not wish to use `reCAPTCHA`,  in your `index.php` set the `$_SESSION["recaptcha"]` value to `1`.
 
-
-
-<!-- USAGE EXAMPLES -->
 ## Usage
+### Gathering data
+Spread the experiment using either the link: `your_url/new_user.php` or when using Prolific, fill in the following link there: `your_url/prolific.php`
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-See the [open issues](https://github.com/BodiB/UvA_Generics/issues) for a list of proposed features (and known issues).
+### Evaluating data
+#### Feedback
+Participants can give feedback on their experience after their participation. An overview of this feedback is available on the `Feedback` section of the `admin menu`.  
+#### Results
+In the `Results` section of the `admin menu`, you are able to see the gathered results in a table form. You can also download the data as a `CSV-file`.
 
 
 
@@ -123,52 +96,35 @@ See the [open issues](https://github.com/BodiB/UvA_Generics/issues) for a list o
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
+2. Create your Feature Branch (`git checkout -b feature`)
+3. Commit your Changes (`git commit -m 'commit comment'`)
+4. Push to the Branch (`git push origin feature`)
 5. Open a Pull Request
 
 
-
 <!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-
+<!--## License -->
+<!--Distributed under the ?? License. See `LICENSE` for more information. -->
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Bodi Boele - bodiboele@gmail.com
 
 Project Link: [https://github.com/BodiB/UvA_Generics](https://github.com/BodiB/UvA_Generics)
 
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
-* []()
-* []()
-* []()
-
-
-
-
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/BodiB/UvA_Generics?style=flat-square
+[contributors-url]: https://github.com/BodiB/UvA_Generics/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/BodiB/UvA_Generics?style=flat-square
+[forks-url]: https://github.com/BodiB/UvA_Generics/network/members
+[stars-shield]: https://img.shields.io/github/stars/BodiB/UvA_Generics?style=flat-square
+[stars-url]: https://github.com/BodiB/UvA_Generics/stargazers
+[issues-shield]: https://img.shields.io/github/issues/BodiB/UvA_Generics?style=flat-square
+[issues-url]: https://github.com/BodiB/UvA_Generics/issues
+[license-shield]: https://img.shields.io/github/license/BodiB/UvA_Generics?style=flat-square
+[license-url]: https://github.com/BodiB/UvA_Generics/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://linkedin.com/in/bodi-boelé-52490710a
 [product-screenshot]: images/screenshot.png
