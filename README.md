@@ -80,6 +80,7 @@ git clone https://github.com/BodiB/UvA_Generics.git
 8.
 	- If you wish to use `reCAPTCHA`, make sure that the `$_SESSION["recaptcha"]` value in your `init.php` is to `0`. Go to [https://developers.google.com/recaptcha](https://developers.google.com/recaptcha) and set up your `reCAPTCHA`. Then move to `init.php` in your `public_html` folder and set the necessary values there.
 	- If you do not wish to use `reCAPTCHA`,  in your `init.php` set the `$_SESSION["recaptcha"]` value to `1`.
+9. The `img` folder is pre_loaded with images, to use other images, just add/replace these to the folder and they will be available in the `admin` menu. ** `map.png` is used in `introduction.php`.
 
 ## Usage
 ### Gathering data
