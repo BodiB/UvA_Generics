@@ -106,7 +106,7 @@
     </head>
 
     <body>
-        <?php if ($_SESSION['question_count'] >= $max_questions) {
+        <?php if ($_SESSION['question_count'] > $max_questions) {
             ?>
         You already finished this questionnaire.
         <?php

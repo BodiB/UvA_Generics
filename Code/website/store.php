@@ -22,7 +22,7 @@
 </html>
 <?php
     } else {
-        if ($_SESSION['question_count'] >= $max_questions) {?>
+        if ($_SESSION['question_count'] > $max_questions) {?>
 <!DOCTYPE html>
 
 <head>

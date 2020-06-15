@@ -4,7 +4,7 @@ include('dropdown.php');
 <button onclick="location.href='get_data.php'" target="_blank">Download result data</button>
 (The table below can be copied and pasted to excel)
 <?php
-$query = "SELECT `result_id`, `results`.`prolific_id`, `question_num`, `question`, `grid_v`, `grid_h`, `t_A_l`, `t_B_l`, `t_A_r`, `t_B_r`, `rating`, `serious`, `feedback`
+$query = "SELECT `result_id`, `results`.`prolific_id`, `question_num`, `question`, `grid_v`, `grid_h`, `t_A_l`, `t_B_l`, `t_A_r`, `t_B_r`, `rating`, `serious`, `feedback`, TIMEDIFF(`ending_time`,`starting_time`) AS timed
           FROM `results`
 		  JOIN `user`
 		  ON results.prolific_id = `user`.prolific_id";
@@ -24,6 +24,7 @@ echo "<tr>";
     echo "<th>response</th>";
     echo "<th>seriousness</th>";
     echo "<th>feedback</th>";
+	echo "<th>total time needed</th>";
     echo "</tr>";
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     echo "<tr>";
@@ -39,6 +40,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     echo "<td>".$row['rating']."</td>";
     echo "<td>".$row['serious']."</td>";
     echo "<td>".$row['feedback']."</td>";
+	echo "<td>".$row['timed']."</td>";
     echo "</tr>";
 }
 echo "</table>";

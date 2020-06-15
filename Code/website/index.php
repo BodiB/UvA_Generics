@@ -1,5 +1,7 @@
 <?php
     session_start();
+	$_SERVER["HTTPS"] = "on";
+	
     //Initialise settings that have been defined in setting up the experiment.
     include('init.php');
 
@@ -49,6 +51,10 @@
 ?>
 
 <head>
+	<noscript>
+	   This page needs JavaScript activated to work. 
+	   <style>div { display:none; }</style>
+    </noscript>
     <meta http-equiv="refresh" content="0;URL=thanks.php">
 </head>
 <?php
@@ -56,6 +62,10 @@
 <!DOCTYPE html>
 
 <head>
+	<noscript>
+		This page needs JavaScript activated to work. 
+		<style>div { display:none; }</style>
+	</noscript>
     <link rel='stylesheet' href='css.css'>
     <?php
     if ($_SESSION["recaptcha"] == 0) {

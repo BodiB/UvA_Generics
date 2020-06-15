@@ -63,7 +63,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
                     $(".suggestions").focusout(function() {
                         $(this).removeClass("editMode");
                         var id = this.id;
-                        var edit_id = <?php echo $_SESSION['ID']; ?>;
+                        var edit_id = "<?php echo $_SESSION['ID']; ?>";
                         var value = $(this).val();
 
                         $.ajax({

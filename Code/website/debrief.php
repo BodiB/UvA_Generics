@@ -3,6 +3,15 @@ session_start();
 if (isset($_SESSION["question_count"])) {
     include('var.php');
 }
+include('db.php');
+include('init.php');
+include('var.php');
+$link = new PDO($dsn, $user, $passwd);
+$statement = $link->prepare('UPDATE user
+						 SET ending_time= NOW() 
+						 WHERE prolific_id = :prolific_id');
+
+$statement->execute(['prolific_id' => $_SESSION['ID']]); 
 ?>
 <!DOCTYPE html>
 <html>

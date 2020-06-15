@@ -7,7 +7,7 @@ if ($_SESSION['admin'] == 1) {
     $value = $_POST['value'];
     $editid = $_POST['id'];
 
-    $query = "UPDATE settings SET ".$field."='".trim($value)."' WHERE id=".$editid;
+    $query = "UPDATE settings SET ".$field."='".trim($value)."' WHERE id='".$editid."'";
     $link = new PDO($dsn, $user, $passwd);
     $stm = $link->prepare($query);
     $stm->execute();

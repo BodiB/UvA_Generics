@@ -48,10 +48,11 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
                 <label for="">Yes.</label>
                 </br>
                 <script>
-                    $(document).ready(function(){
+                $(document).ready(function(){
+				$("p").hide();		
                 // Add Class
                  $('.rate').click(function(){
-                  var edit_id = <?php echo $_SESSION['ID']; ?>;
+                  var edit_id = "<?php echo $_SESSION['ID']; ?>";
                   var value = $(this).val();
 
                   $.ajax({
@@ -59,14 +60,15 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
                    type: 'post',
                    data: { value:value, id:edit_id },
                    success:function(response){
-                    console.log('Save successfully');
-                    $(".submit").css("display","inline-block")
+                    console.log('Saved successfully.');
+					$("p").show();
                    }
                   });
                  });
                 });
             </script>
             </div>
+			<p>Thank you for helping us by being honest on the above question.</p>
             <form method="post" action="thanks1.php" id="form1">
                 <button type="submit" form="form1" style="margin:auto; display:block;">>></button>
             </form>
@@ -80,35 +82,6 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
             }
         }
             ?>
-            <script>
-                $(document).ready(function() {
-                    // Add Class
-                    $('.suggestions').click(function() {
-                        $(this).addClass('editMode');
-                    });
-
-                    // Save data
-                    $(".suggestions").focusout(function() {
-                        $(this).removeClass("editMode");
-                        var id = this.id;
-                        var edit_id = <?php echo $_SESSION['ID']; ?>;
-                        var value = $(this).val();
-
-                        $.ajax({
-                            url: 'update_suggestion.php',
-                            type: 'post',
-                            data: {
-                                value: value,
-                                id: edit_id
-                            },
-                            success: function(response) {
-                                console.log('Save successfully');
-                            }
-                        });
-
-                    });
-                });
-            </script>
         </div>
         </div>
     </body>
