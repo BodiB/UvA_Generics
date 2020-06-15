@@ -79,7 +79,7 @@ git clone https://github.com/BodiB/UvA_Generics.git
 
 ## Usage
 ### Gathering data
-Spread the experiment using either the link: `your_url/new_user.php` or when using Prolific, fill in the following link there: `your_url/prolific.php`, using the `PROLIFIC_PID` option as: `your_url/prolific.php?PROLIFIC_PID=<?>`
+Spread the experiment using either the link: `your_url/new_user.php` or when using Prolific, fill in the following link in the `What is the URL of your study?` field: `your_url/prolific.php`, using the `PROLIFIC_PID` option as: `your_url/prolific.php?PROLIFIC_PID={{%PROLIFIC_PID%}}` and `copy` the `redirect` from the Prolifc website to the designated field in the `admin` settings `menu`.
 
 ### Evaluating data
 #### Feedback
